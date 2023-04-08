@@ -40,10 +40,10 @@ public class discordbot {
         }
 
         jda.updateCommands().addCommands(
-                Commands.slash("ping", "Returns a pong!")
+                Commands.slash("ping", "Returns a pong! MCBot is online!")
         ).queue();
         jda.updateCommands().addCommands(
-                Commands.slash("tps", "Returns the current TPS of the Server!")
+                Commands.slash("tps", "Returns the current TPS of the Server! MCServer is online!")
         ).queue();
     }
 
