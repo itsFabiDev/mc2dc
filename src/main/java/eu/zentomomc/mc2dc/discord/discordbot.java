@@ -22,10 +22,7 @@ public class discordbot {
     }
 
     public static void init() {
-        if (jda != null && jda.getStatus() == JDA.Status.CONNECTED) {
-            // JDA is already connected, return without doing anything
-            Bukkit.broadcastMessage("Couldn't start Discord Bot, because it is already running");
-        }
+        jda.shutdownNow();
 
         String token = Token.getToken();
 
