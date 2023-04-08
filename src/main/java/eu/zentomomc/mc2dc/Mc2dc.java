@@ -22,6 +22,9 @@ import java.util.UUID;
 public final class Mc2dc extends JavaPlugin {
     private PluginManager manager;
     private static Mc2dc instance;
+    public static Mc2dc getInstance() {
+        return instance;
+    }
     public Map<UUID, UUID> tpaRequests = new HashMap<>();
     private discordbot bot;
     public void onEnable() {
