@@ -27,7 +27,9 @@ public class discordbot {
         DiscordCommandListener commandListener = new DiscordCommandListener();
         DiscordJoinListener joinListener = new DiscordJoinListener();
         DiscordStartUpListener startUpListener = new DiscordStartUpListener();
+        DiscordMcChat onMessageListener = new DiscordMcChat();
 
+        //JDA Builder
         JDABuilder builder = JDABuilder.createDefault(token);
         builder.setActivity(Activity.playing("Minecraft"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
@@ -35,6 +37,7 @@ public class discordbot {
         builder.addEventListeners(commandListener);
         builder.addEventListeners(joinListener);
         builder.addEventListeners(startUpListener);
+        builder.addEventListeners(onMessageListener);
         jda = builder.build();
 
         try {

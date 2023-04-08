@@ -1,3 +1,4 @@
+eu/zentomomc/mc2dc/discord/DiscordMcChat.class
 eu/zentomomc/mc2dc/discord/DiscordCommandListener.class
 eu/zentomomc/mc2dc/discord/DiscordStartUpListener.class
 eu/zentomomc/mc2dc/discord/DiscordJoinListener.class
