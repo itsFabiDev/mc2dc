@@ -33,30 +33,7 @@ public class onBlockInteractListener implements Listener {
 
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && block != null) {
             if (block.getType().toString().contains("_STAIRS") || block.getType().toString().contains("_SLAB")) {
-                if (player.getGameMode() != GameMode.ADVENTURE && player.getGameMode() != GameMode.SPECTATOR) {
-                    if (player.isSneaking()) {
-                        if (sitting.contains(player.getUniqueId())) {
-                            player.setVelocity(new Vector(0, -0.1, 0));
-                            sitting.remove(player.getUniqueId());
-                            player.sendMessage("You are no longer sitting!");
-                        }
-                    } else {
-                        sitting.add(player.getUniqueId());
-                        player.sendMessage("You are now sitting!");
-                        new BukkitRunnable() {
-                            @Override
-                            public void run() {
-                                if (sitting.contains(player.getUniqueId())) {
-                                    player.setVelocity(new Vector(0, -0.1, 0));
-                                } else {
-                                    cancel();
-                                }
-                            }
-                        }.runTaskTimer(Mc2dc.getInstance(), 0, 1);
-                    }
-                } else {
-                    player.sendMessage("You can't sit while in adventure mode or spectator mode!");
-                }
+                player.sendMessage("This feature is coming soon! Please let me alone :)");
             }
         }
     }
