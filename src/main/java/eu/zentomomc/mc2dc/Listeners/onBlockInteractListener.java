@@ -12,7 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
@@ -39,30 +38,28 @@ public class onBlockInteractListener implements Listener {
                 if (player.getGameMode() != GameMode.ADVENTURE && player.getGameMode() != GameMode.SPECTATOR) {
                     if (player.isSneaking()) {
                         if (sittingPlayers.containsKey(player.getUniqueId())) {
-                            ArmorStand armorStand = sittingPlayers.get(player.getUniqueId());
-                            armorStand.remove();
+                            // Remove the sitting armor stand and update the player's location
+                            sittingPlayers.get(player.getUniqueId()).remove();
                             sittingPlayers.remove(player.getUniqueId());
+                            player.teleport(player.getLocation().add(0, 1, 0));
                             player.sendMessage("You are no longer sitting!");
                         } else {
-                            ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(block.getLocation().add(0.5, -0.6, 0.5), EntityType.ARMOR_STAND);
+                            // Spawn a new armor stand and position it under the player
+                            ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(player.getLocation().subtract(0, 1, 0), EntityType.ARMOR_STAND);
                             armorStand.setGravity(false);
                             armorStand.setVisible(false);
                             armorStand.setSmall(true);
                             armorStand.setMarker(true);
-                            armorStand.setBasePlate(false);
-                            armorStand.setCanPickupItems(false);
-                            armorStand.setCustomName(player.getName() + "'s chair");
-                            armorStand.setCustomNameVisible(false);
-                            armorStand.setHeadPose(new EulerAngle(-Math.PI / 2, 0, 0));
+                            armorStand.addPassenger(player);
                             sittingPlayers.put(player.getUniqueId(), armorStand);
                             player.sendMessage("You are now sitting!");
+
+                            // Schedule a task to update the player's location to make it look like they are sitting
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
                                     if (sittingPlayers.containsKey(player.getUniqueId())) {
-                                        ArmorStand armorStand = sittingPlayers.get(player.getUniqueId());
-                                        armorStand.teleport(block.getLocation().add(0.5, -0.6, 0.5));
-                                        armorStand.setHeadPose(new EulerAngle(-Math.PI / 2, 0, 0));
+                                        player.teleport(sittingPlayers.get(player.getUniqueId()).getLocation().add(0, 1, 0));
                                     } else {
                                         cancel();
                                     }

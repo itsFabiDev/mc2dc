@@ -8,6 +8,7 @@
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/onMessageListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/JoinListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/discordbot.java
+/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/commands/StopPluginCommand.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/onBlockInteractListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/commands/DiscordStartCommand.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/onDeathListener.java
