@@ -11,3 +11,11 @@ commands:
     description: Stop the Discord bot
     usage: /stopdc
     aliases: [stopdiscord]
+  startdc:
+    description: Start the Discord bot
+    usage: /startdc
+    aliases: [startdiscord]
+  restartdc:
+    description: Restart the Discord bot
+    usage: /restartdc
+    aliases: [restartdiscord]

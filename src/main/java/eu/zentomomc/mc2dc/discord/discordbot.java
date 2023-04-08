@@ -86,4 +86,13 @@ public class discordbot {
         jda.shutdown();
     }
 
+    public static void start() {
+        init();
+    }
+
+    public static void restart() {
+        stop();
+        start();
+    }
+
 }

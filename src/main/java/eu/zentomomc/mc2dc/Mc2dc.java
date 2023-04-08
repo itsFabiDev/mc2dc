@@ -40,6 +40,8 @@ public final class Mc2dc extends JavaPlugin {
         registerListener(new onBlockInteractListener());
         registerCommand(new TPACommand(), "tpa");
         registerCommand(new DiscordStopCommand(),"stopdc");
+        registerCommand(new DiscordStartCommand(),"startdc");
+        registerCommand(new DiscordRestartCommand(),"restartdc");
     }
 
 
