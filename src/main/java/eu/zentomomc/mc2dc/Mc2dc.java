@@ -21,6 +21,7 @@ import java.util.UUID;
 
 public final class Mc2dc extends JavaPlugin {
     private PluginManager manager;
+
     private static Mc2dc instance;
     public static Mc2dc getInstance() {
         return instance;
@@ -42,6 +43,7 @@ public final class Mc2dc extends JavaPlugin {
         registerCommand(new DiscordStopCommand(),"stopdc");
         registerCommand(new DiscordStartCommand(),"startdc");
         registerCommand(new DiscordRestartCommand(),"restartdc");
+        registerCommand(new StopPluginCommand(),"stopplugin");
     }
 
 

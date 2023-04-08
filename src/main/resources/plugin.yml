@@ -19,3 +19,7 @@ commands:
     description: Restart the Discord bot
     usage: /restartdc
     aliases: [restartdiscord]
+  stopplugin:
+    description: Stop the plugin
+    usage: /stopplugin
+    aliases: [stoppl]
