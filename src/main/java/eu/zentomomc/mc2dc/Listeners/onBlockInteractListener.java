@@ -39,20 +39,20 @@ public class onBlockInteractListener implements Listener {
                             player.setVelocity(new Vector(0, -0.1, 0));
                             sitting.remove(player.getUniqueId());
                             player.sendMessage("You are no longer sitting!");
-                        } else {
-                            sitting.add(player.getUniqueId());
-                            player.sendMessage("You are now sitting!");
-                            new BukkitRunnable() {
-                                @Override
-                                public void run() {
-                                    if (sitting.contains(player.getUniqueId())) {
-                                        player.setVelocity(new Vector(0, -0.1, 0));
-                                    } else {
-                                        cancel();
-                                    }
-                                }
-                            }.runTaskTimer(Mc2dc.getInstance(), 0, 1);
                         }
+                    } else {
+                        sitting.add(player.getUniqueId());
+                        player.sendMessage("You are now sitting!");
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                if (sitting.contains(player.getUniqueId())) {
+                                    player.setVelocity(new Vector(0, -0.1, 0));
+                                } else {
+                                    cancel();
+                                }
+                            }
+                        }.runTaskTimer(Mc2dc.getInstance(), 0, 1);
                     }
                 } else {
                     player.sendMessage("You can't sit while in adventure mode or spectator mode!");
