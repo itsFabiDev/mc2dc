@@ -15,7 +15,7 @@ import eu.zentomomc.mc2dc.Listeners.onAdvancementListener;
 
 public final class Mc2dc extends JavaPlugin {
     private PluginManager manager;
-
+    private static Mc2dc instance;
 
     private discordbot bot;
     public void onEnable() {
