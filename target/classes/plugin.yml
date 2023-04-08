@@ -1,0 +1,4 @@
+name: mc2dc
+version: '1.0'
+main: eu.zentomomc.mc2dc.Mc2dc
+api-version: 1.19
