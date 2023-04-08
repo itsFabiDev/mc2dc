@@ -26,6 +26,7 @@ public class discordbot {
         builder.setActivity(Activity.playing("Minecraft"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
         builder.enableIntents(GatewayIntent.MESSAGE_CONTENT);
+        builder.addEventListeners(new DiscordCommandListener());
         jda = builder.build();
 
         try {
