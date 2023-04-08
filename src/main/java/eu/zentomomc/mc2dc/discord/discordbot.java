@@ -63,15 +63,15 @@ public class discordbot {
         eb.setAuthor(message, null, "https://mc-heads.net/head/" + uuid);
         eb.setTimestamp(LocalDateTime.now());
         if(event.equals("join"))
-            eb.setColor(Color.getColor("green"));
+            eb.setColor(Color.GREEN);
         if(event.equals("quit"))
-            eb.setColor(Color.getColor("red"));
+            eb.setColor(Color.RED);
         if(event.equals("chat"))
-            eb.setColor(Color.getColor("blue"));
+            eb.setColor(Color.BLUE);
         if (event.equals("death"))
-            eb.setColor(Color.getColor("black"));
+            eb.setColor(Color.BLACK);
         if (event.equals("advancement"))
-            eb.setColor(Color.getColor("yellow"));
+            eb.setColor(Color.YELLOW);
 
         TextChannel textChannel = jda.getTextChannelById("1088163336065122446");
         if (textChannel == null) {

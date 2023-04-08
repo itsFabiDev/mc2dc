@@ -2,6 +2,7 @@ eu/zentomomc/mc2dc/discord/DiscordCommandListener.class
 eu/zentomomc/mc2dc/discord/DiscordJoinListener.class
 eu/zentomomc/mc2dc/discord/discordbot.class
 eu/zentomomc/mc2dc/Listeners/onMessageListener.class
+eu/zentomomc/mc2dc/commands/TPACommand.class
 eu/zentomomc/mc2dc/Listeners/QuitListener.class
 eu/zentomomc/mc2dc/Listeners/onDeathListener.class
 eu/zentomomc/mc2dc/discord/DiscordMcChat.class

@@ -2,3 +2,8 @@ name: mc2dc
 version: '${project.version}'
 main: eu.zentomomc.mc2dc.Mc2dc
 api-version: 1.19
+commands:
+  tpa:
+    description: Teleport to a player
+    usage: /tpa <player>
+    aliases: [tpahere]
