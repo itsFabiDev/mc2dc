@@ -13,7 +13,9 @@ public class DiscordCommandListener extends ListenerAdapter {
                 event.reply("Pong!").queue();
                 break;
             case "tps":
-                event.reply("The current TPS of the Server are:" + Bukkit.getServer().getTPS().toString()).queue();
+                double tps = Bukkit.getServer().getTPS()[0];
+                String formattedTps = String.format("%.2f", tps);
+                event.reply("The current TPS of the server is: " + formattedTps).queue();
                 break;
         }
     }
