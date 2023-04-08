@@ -1,5 +1,6 @@
 package eu.zentomomc.mc2dc;
 
+import eu.zentomomc.mc2dc.Listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,11 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import eu.zentomomc.mc2dc.discord.discordbot;
 
 //Import Listeners
-import eu.zentomomc.mc2dc.Listeners.JoinListener;
-import eu.zentomomc.mc2dc.Listeners.QuitListener;
-import eu.zentomomc.mc2dc.Listeners.onDeathListener;
-import eu.zentomomc.mc2dc.Listeners.onMessageListener;
-import eu.zentomomc.mc2dc.Listeners.onAdvancementListener;
 import org.bukkit.scheduler.BukkitRunnable;
 import eu.zentomomc.mc2dc.commands.*;
 
@@ -38,6 +34,7 @@ public final class Mc2dc extends JavaPlugin {
         registerListener(new onDeathListener());
         registerListener(new onMessageListener());
         registerListener(new onAdvancementListener());
+        registerListener(new onBlockInteractListener());
         registerCommand(new TPACommand(), "tpa");
     }
 
