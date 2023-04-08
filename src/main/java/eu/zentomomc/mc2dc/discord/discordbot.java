@@ -22,14 +22,19 @@ public class discordbot {
         if (guildID.isEmpty() || token.isEmpty()) {
             Bukkit.getConsoleSender().sendMessage("Discord was not activated, because of an error");
         }
+
+        //Listeners
         DiscordCommandListener commandListener = new DiscordCommandListener();
         DiscordJoinListener joinListener = new DiscordJoinListener();
+        DiscordStartUpListener startUpListener = new DiscordStartUpListener();
+
         JDABuilder builder = JDABuilder.createDefault(token);
         builder.setActivity(Activity.playing("Minecraft"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
         builder.enableIntents(GatewayIntent.MESSAGE_CONTENT);
         builder.addEventListeners(commandListener);
         builder.addEventListeners(joinListener);
+        builder.addEventListeners(startUpListener);
         jda = builder.build();
 
         try {
@@ -40,11 +45,10 @@ public class discordbot {
         }
 
         jda.updateCommands().addCommands(
-                Commands.slash("ping", "Returns a pong! MCBot is online!")
-        ).queue();
-        jda.updateCommands().addCommands(
+                Commands.slash("ping", "Returns a pong! MCBot is online!"),
                 Commands.slash("tps", "Returns the current TPS of the Server! MCServer is online!")
         ).queue();
+
     }
 
 }
