@@ -82,6 +82,8 @@ public class discordbot {
         return true;
     }
 
-
+    public static void stop() {
+        jda.shutdown();
+    }
 
 }

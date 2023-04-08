@@ -7,3 +7,7 @@ commands:
     description: Teleport to a player
     usage: /tpa <player>
     aliases: [tpahere]
+  stopdc:
+    description: Stop the Discord bot
+    usage: /stopdc
+    aliases: [stopdiscord]
