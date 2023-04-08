@@ -11,6 +11,6 @@ public class QuitListener implements Listener {
         Player player = event.getPlayer();
         String dcmessage = event.getQuitMessage();
         event.setQuitMessage(ChatColor.RED + player.getName() + " has left the server!");
-        discordbot.sendMessage(event.getQuitMessage(), event.getPlayer().getUniqueId().toString(), "quit");
+        discordbot.sendMessage(dcmessage, event.getPlayer().getUniqueId().toString(), "quit");
     }
 }
