@@ -27,7 +27,7 @@ public class discordbot {
             Bukkit.broadcastMessage("Couldn't start Discord Bot, because it is already running");
             jda.shutdownNow();
         }
-        jda.shutdownNow();
+
 
         String token = Token.getToken();
 
