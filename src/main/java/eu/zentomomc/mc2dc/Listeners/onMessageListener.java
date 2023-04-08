@@ -13,7 +13,7 @@ public class onMessageListener implements Listener {
         Player player = event.getPlayer();
         String dcmessage = event.getMessage();
         String message = event.getMessage();
-        message = message.replace("<" + player.getName() + ">", ChatColor.DARK_BLUE + "<" + player.getName() + "> " + ChatColor.WHITE);
+        message = message.replace("<" + player.getName() + ">", ChatColor.DARK_BLUE + "<" + player.getName() + "> " + ChatColor.WHITE + message);
         event.setMessage(message);
         discordbot.sendMessage(dcmessage, player.getUniqueId().toString(), "chat");
     }
