@@ -14,12 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
-public class onBlockInteractListener extends JavaPlugin implements Listener {
-
-    @Override
-    public void onEnable() {
-        getServer().getPluginManager().registerEvents(this, this);
-    }
+public class onBlockInteractListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
