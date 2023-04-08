@@ -7,6 +7,12 @@ commands:
     description: Teleport to a player
     usage: /tpa <player>
     aliases: [tpahere]
+  tpaccept:
+    description: Accept a teleportation request
+    usage: /tpaccept
+  tpdeny:
+    description: Deny a teleportation request
+    usage: /tpdeny
   stopdc:
     description: Stop the Discord bot
     usage: /stopdc

@@ -1,5 +1,5 @@
 name: mc2dc
-version: '${project.version}'
+version: '1.0'
 main: eu.zentomomc.mc2dc.Mc2dc
 api-version: 1.19
 commands:
@@ -7,6 +7,12 @@ commands:
     description: Teleport to a player
     usage: /tpa <player>
     aliases: [tpahere]
+  tpaccept:
+    description: Accept a teleportation request
+    usage: /tpaccept
+  tpdeny:
+    description: Deny a teleportation request
+    usage: /tpdeny
   stopdc:
     description: Stop the Discord bot
     usage: /stopdc
