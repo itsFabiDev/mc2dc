@@ -11,7 +11,8 @@ public class onMessageListener implements Listener {
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
+        String dcmessage = event.getMessage();
         event.setMessage(ChatColor.DARK_BLUE + "<" + player.getName() + "> " + ChatColor.WHITE + event.getMessage());
-        discordbot.sendMessage(event.getMessage(), player.getUniqueId().toString(), "chat");
+        discordbot.sendMessage(dcmessage, player.getUniqueId().toString(), "chat");
     }
 }

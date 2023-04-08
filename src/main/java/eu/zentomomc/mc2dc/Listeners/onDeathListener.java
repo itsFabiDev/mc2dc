@@ -9,7 +9,8 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class onDeathListener implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getPlayer();
+        String dcmessage = event.getDeathMessage();
         event.setDeathMessage(ChatColor.BLACK + "<" + player.getName() + "> " + ChatColor.WHITE + event.getDeathMessage());
-        discordbot.sendMessage(event.getDeathMessage(), player.getUniqueId().toString(), "death");
+        discordbot.sendMessage(dcmessage, player.getUniqueId().toString(), "death");
     }
 }

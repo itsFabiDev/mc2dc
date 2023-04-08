@@ -10,7 +10,8 @@ public class JoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        String dcmessage = event.getJoinMessage();
         event.setJoinMessage(ChatColor.GREEN + player.getName() + " has joined the server!");
-        discordbot.sendMessage(event.getJoinMessage(), event.getPlayer().getUniqueId().toString(), "join");
+        discordbot.sendMessage(dcmessage, event.getPlayer().getUniqueId().toString(), "join");
     }
 }
