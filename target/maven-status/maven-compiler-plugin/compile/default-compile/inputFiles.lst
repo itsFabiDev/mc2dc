@@ -1,6 +1,12 @@
+/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/onMessageListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/DiscordStartUpListener.java
+/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/JoinListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/discordbot.java
+/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/DiscordMcChat.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/DiscordCommandListener.java
+/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/QuitListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Mc2dc.java
+/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/onDeathListener.java
+/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/onAdvancementListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/DiscordJoinListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/Token.java

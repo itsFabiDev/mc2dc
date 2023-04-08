@@ -1,12 +1,17 @@
 package eu.zentomomc.mc2dc.discord;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import eu.zentomomc.mc2dc.discord.*;
 import org.bukkit.Bukkit;
+
+import java.awt.*;
+import java.time.LocalDateTime;
 
 public class discordbot {
     private static JDA jda;
@@ -53,5 +58,30 @@ public class discordbot {
         ).queue();
 
     }
+    public static boolean sendMessage(String message, String uuid, String event) {
+        EmbedBuilder eb = new EmbedBuilder();
+        eb.setAuthor(message, null, "https://mc-heads.net/head/" + uuid);
+        eb.setTimestamp(LocalDateTime.now());
+        if(event.equals("join"))
+            eb.setColor(Color.getColor("green"));
+        if(event.equals("quit"))
+            eb.setColor(Color.getColor("red"));
+        if(event.equals("chat"))
+            eb.setColor(Color.getColor("blue"));
+        if (event.equals("death"))
+            eb.setColor(Color.getColor("black"));
+        if (event.equals("advancement"))
+            eb.setColor(Color.getColor("yellow"));
+
+        TextChannel textChannel = jda.getTextChannelById("1088163336065122446");
+        if (textChannel == null) {
+            return false;
+        }
+
+        textChannel.sendMessageEmbeds(eb.build()).queue();
+        return true;
+    }
+
+
 
 }
