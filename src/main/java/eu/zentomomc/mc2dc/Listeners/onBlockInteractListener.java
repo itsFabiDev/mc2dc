@@ -4,16 +4,19 @@ import eu.zentomomc.mc2dc.Mc2dc;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class onBlockInteractListener implements Listener {
@@ -24,7 +27,7 @@ public class onBlockInteractListener implements Listener {
      *
      */
 
-    private final Set<UUID> sitting = new HashSet<>();
+    private final Map<UUID, ArmorStand> sittingPlayers = new HashMap<>();
 
     @EventHandler
     public void onBlockInteract(PlayerInteractEvent event) {
@@ -35,18 +38,31 @@ public class onBlockInteractListener implements Listener {
             if (block.getType().toString().contains("_STAIRS") || block.getType().toString().contains("_SLAB")) {
                 if (player.getGameMode() != GameMode.ADVENTURE && player.getGameMode() != GameMode.SPECTATOR) {
                     if (player.isSneaking()) {
-                        if (sitting.contains(player.getUniqueId())) {
-                            player.setVelocity(new Vector(0, 0.5, 0));
-                            sitting.remove(player.getUniqueId());
+                        if (sittingPlayers.containsKey(player.getUniqueId())) {
+                            ArmorStand armorStand = sittingPlayers.get(player.getUniqueId());
+                            armorStand.remove();
+                            sittingPlayers.remove(player.getUniqueId());
                             player.sendMessage("You are no longer sitting!");
                         } else {
-                            sitting.add(player.getUniqueId());
+                            ArmorStand armorStand = (ArmorStand) player.getWorld().spawnEntity(block.getLocation().add(0.5, -0.6, 0.5), EntityType.ARMOR_STAND);
+                            armorStand.setGravity(false);
+                            armorStand.setVisible(false);
+                            armorStand.setSmall(true);
+                            armorStand.setMarker(true);
+                            armorStand.setBasePlate(false);
+                            armorStand.setCanPickupItems(false);
+                            armorStand.setCustomName(player.getName() + "'s chair");
+                            armorStand.setCustomNameVisible(false);
+                            armorStand.setHeadPose(new EulerAngle(-Math.PI / 2, 0, 0));
+                            sittingPlayers.put(player.getUniqueId(), armorStand);
                             player.sendMessage("You are now sitting!");
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    if (sitting.contains(player.getUniqueId())) {
-                                        player.setVelocity(new Vector(0, -0.5, 0));
+                                    if (sittingPlayers.containsKey(player.getUniqueId())) {
+                                        ArmorStand armorStand = sittingPlayers.get(player.getUniqueId());
+                                        armorStand.teleport(block.getLocation().add(0.5, -0.6, 0.5));
+                                        armorStand.setHeadPose(new EulerAngle(-Math.PI / 2, 0, 0));
                                     } else {
                                         cancel();
                                     }
