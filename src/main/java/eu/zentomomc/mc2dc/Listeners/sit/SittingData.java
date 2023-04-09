@@ -44,7 +44,8 @@ public class SittingData {
             horse.setInvisible(true);
 
             sittingPlayers.put(player, this);
-
+            if(Mc2dc.getInstance() == null)
+                Bukkit.getLogger().info("Mc2dc is null");
             // Schedule task to delete horse after 5 seconds if player is not still sitting
             deleteTask = new BukkitRunnable() {
                 @Override
