@@ -38,6 +38,8 @@ public class SittingData {
             horse.setTamed(true);
             horse.setOwner(player);
             horse.setPassenger(player);
+            horse.setInvisible(true);
+            horse.setSilent(true);
             isSitting = true;
 
             sittingPlayers.put(player, this);
