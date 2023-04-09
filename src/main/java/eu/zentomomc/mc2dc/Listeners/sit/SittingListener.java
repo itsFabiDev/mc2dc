@@ -1,5 +1,6 @@
 package eu.zentomomc.mc2dc.Listeners.sit;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -39,11 +40,13 @@ public class SittingListener implements Listener {
         Player player = event.getPlayer();
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
+            Bukkit.getConsoleSender().sendMessage("Player is inside vehicle or sneaking");
             if (player.isInsideVehicle() || player.isSneaking()) {
                 Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
                 if (sittingData.isSittingOn(blockBelow.getLocation())) {
-                    sittingData.updateSittingPosition();
+                    sittingData.stopSitting();
                 }
+
             }
             if (!player.isSneaking()) {
                 sittingData.stopSitting();
