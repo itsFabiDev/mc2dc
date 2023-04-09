@@ -1,5 +1,6 @@
 package eu.zentomomc.mc2dc.Listeners.sit;
 
+import eu.zentomomc.mc2dc.Mc2dc;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
@@ -51,18 +52,22 @@ public class SittingData {
             player.setAllowFlight(false);
             player.setFlying(false);
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
-            Bukkit.getServer().getEntity(horse.getUniqueId()).remove();
-            isSitting = false;
             horse.remove();
+            isSitting = false;
+
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName()+",type=horse]");
+                    Bukkit.getScheduler().runTask(Mc2dc.getInstance(), () -> {
+                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=horse]");
+                    });
                 }
             }.run();
+
             sittingPlayers.remove(player);
         }
     }
+
 
     public void updateSittingPosition() {
         if (isSitting) {
