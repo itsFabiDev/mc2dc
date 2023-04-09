@@ -42,7 +42,7 @@ public class TPACommand implements CommandExecutor, Listener {
         tpaReceiver = receiver.getName();
         awaitingResponse = true;
 
-        receiver.sendMessage(ChatColor.YELLOW + tpaRequester + " wants to teleport to you. Type /tpaccept to accept or /tpdeny to deny.");
+        receiver.sendMessage(ChatColor.YELLOW + tpaRequester + " wants to teleport to you. Type tpaccept to accept or tpdeny to deny.");
         player.sendMessage(ChatColor.YELLOW + "TPA request sent to " + tpaReceiver + ".");
 
         return true;
@@ -58,12 +58,12 @@ public class TPACommand implements CommandExecutor, Listener {
             return;
         }
         String message = event.getMessage().toLowerCase();
-        if (message.equals("/tpaccept")) {
+        if (message.equals("tpaccept")) {
             onTPAccept(player);
-        } else if (message.equals("/tpdeny")) {
+        } else if (message.equals("tpdeny")) {
             onTPDeny(player);
         } else {
-            player.sendMessage(ChatColor.RED + "Invalid command. Type /tpaccept or /tpdeny.");
+            player.sendMessage(ChatColor.RED + "Invalid command. Type tpaccept or tpdeny.");
         }
         awaitingResponse = false;
         event.setCancelled(true);
