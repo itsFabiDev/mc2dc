@@ -28,6 +28,7 @@ public class DiscordVerifier {
             Bukkit.getConsoleSender().sendMessage("Could not find guild!");
             return false;
         }
+        Bukkit.getConsoleSender().sendMessage("Guild: " + guild.getName());
         Member member = guild.getMemberById(discordID);
         Bukkit.getConsoleSender().sendMessage("Member: " + member.getNickname());
         if (member == null) {
