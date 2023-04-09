@@ -91,7 +91,7 @@ public class DiscordVerifier {
             FileWriter writer = new FileWriter(VERIFIED_PLAYERS_FILE, true);
             writer.write(discordID + ":" + minecraftName + "\n");
             writer.close();
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
