@@ -22,26 +22,17 @@ public class DiscordVerifier {
         if (isPlayerVerified(discordID)) {
             return true;
         }
-
         Guild guild = discordbot.getJda().getGuildById("876088468466450472");
         Member member = guild.getMemberById(discordID);
-        if (member == null) {
-            // Member does not exist in guild
+        if(member == null)
             return false;
-        }
-
-        OffsetDateTime joinTime = member.getTimeJoined();
-        if (joinTime == null) {
-            // Join time is not available
+        OffsetDateTime joinedAt = member.getTimeJoined();
+        OffsetDateTime now = OffsetDateTime.now();
+        Duration duration = Duration.between(joinedAt, now);
+        if (duration.toDays() < 1)
             return false;
-        }
-
-        if (Duration.between(joinTime, OffsetDateTime.now()).toDays() > 0) {
-            addVerifiedPlayer(discordID, minecraftName);
-            return true;
-        }
-
-        return false;
+        else
+            return addVerifiedPlayer(discordID, minecraftName);
     }
 
     /**
@@ -77,13 +68,15 @@ public class DiscordVerifier {
      * @param discordID The Discord ID of the user.
      * @param minecraftName The Minecraft name of the player.
      */
-    private static void addVerifiedPlayer(String discordID, String minecraftName) {
+    private static boolean addVerifiedPlayer(String discordID, String minecraftName) {
         try {
             FileWriter writer = new FileWriter(VERIFIED_PLAYERS_FILE, true);
             writer.write(discordID + ":" + minecraftName + "\n");
             writer.close();
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
     }
 }
