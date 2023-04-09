@@ -22,5 +22,4 @@ public class StopPluginCommand implements CommandExecutor {
         }
         return true;
     }
-
 }
