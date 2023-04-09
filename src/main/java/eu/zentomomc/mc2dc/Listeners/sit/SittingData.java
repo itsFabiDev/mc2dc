@@ -42,19 +42,6 @@ public class SittingData {
             horse.setCustomNameVisible(false);
             horse.setPassenger(player);
             horse.setInvisible(true);
-
-            sittingPlayers.put(player, this);
-            if(Mc2dc.getInstance() == null)
-                Bukkit.getLogger().info("Mc2dc is null");
-            // Schedule task to delete horse after 5 seconds if player is not still sitting
-            deleteTask = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    if (!isSitting) {
-                        horse.remove();
-                    }
-                }
-            }.runTaskLater(Mc2dc.getInstance(), 100L);
         }
     }
 
@@ -69,7 +56,14 @@ public class SittingData {
             horse.remove();
             isSitting = false;
 
-            cancelTask();
+            // Delete the horse after 5 seconds
+            deleteTask = new BukkitRunnable() {
+                @Override
+                public void run() {
+                    horse.remove();
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=Minecraft:horse]");
+                }
+            }.runTaskLater(Mc2dc.getInstance(), 5);
 
             sittingPlayers.remove(player);
         }
