@@ -20,7 +20,7 @@ public class DiscordVerifier {
         // Check if the player is already verified
         if (isPlayerVerified(discordID)) {
             return true;
-        } else if (Duration.between(discordbot.getJda().getGuildById("876088468466450472").getMemberByTag(discordID).getTimeJoined(), OffsetDateTime.now()).toDays() > 0) {
+        } else if (Duration.between(discordbot.getJda().getGuildById("876088468466450472").getMemberById(discordID).getTimeJoined(), OffsetDateTime.now()).toDays() > 0) {
             addVerifiedPlayer(discordID, minecraftName);
             return true;
         }
