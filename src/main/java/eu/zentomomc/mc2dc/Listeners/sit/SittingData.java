@@ -7,6 +7,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class SittingData {
     private boolean isSitting = false;
     private float sittingYaw = 0.0f;
     private Horse horse;
+    private BukkitTask deleteTask;
 
     public SittingData(Player player, Location sittingLocation) {
         this.player = player;
@@ -42,6 +44,16 @@ public class SittingData {
             horse.setInvisible(true);
 
             sittingPlayers.put(player, this);
+
+            // Schedule task to delete horse after 5 seconds if player is not still sitting
+            deleteTask = new BukkitRunnable() {
+                @Override
+                public void run() {
+                    if (!isSitting) {
+                        horse.remove();
+                    }
+                }
+            }.runTaskLater(Mc2dc.getInstance(), 100);
         }
     }
 
@@ -55,19 +67,11 @@ public class SittingData {
             horse.remove();
             isSitting = false;
 
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    Bukkit.getScheduler().runTask(Mc2dc.getInstance(), () -> {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=horse]");
-                    });
-                }
-            }.run();
+            cancelTask();
 
             sittingPlayers.remove(player);
         }
     }
-
 
     public void updateSittingPosition() {
         if (isSitting) {
@@ -88,4 +92,10 @@ public class SittingData {
         return sittingPlayers.get(player);
     }
 
+    public void cancelTask() {
+        if (deleteTask != null) {
+            deleteTask.cancel();
+            deleteTask = null;
+        }
+    }
 }

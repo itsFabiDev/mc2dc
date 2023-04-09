@@ -1,9 +1,5 @@
 package eu.zentomomc.mc2dc.Listeners.sit;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Bisected;
@@ -15,8 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.vehicle.VehicleExitEvent;
-import org.bukkit.util.Vector;
 
 public class SittingListener implements Listener {
 
@@ -46,29 +40,11 @@ public class SittingListener implements Listener {
                 if (sittingData.isSittingOn(blockBelow.getLocation())) {
                     sittingData.stopSitting();
                 }
-
-            }
-            if (!player.isSneaking()) {
+            } else {
+                // Player has moved away from the horse, remove it
                 sittingData.stopSitting();
             }
         }
     }
 
-    @EventHandler
-    public void onVehicleLeave(VehicleExitEvent event) {
-        Player player = (Player)event.getExited();
-        SittingData sittingData = SittingData.getSittingData(player);
-        if (sittingData != null) {
-            if (player.isInsideVehicle() || player.isSneaking()) {
-                Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
-                if (sittingData.isSittingOn(blockBelow.getLocation())) {
-                    sittingData.stopSitting();
-                }
-
-            }
-            if (!player.isSneaking()) {
-                sittingData.stopSitting();
-            }
-        }
-    }
 }
