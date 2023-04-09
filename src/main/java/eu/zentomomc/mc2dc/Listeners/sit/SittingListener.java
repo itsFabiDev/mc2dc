@@ -40,7 +40,10 @@ public class SittingListener implements Listener {
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
             if (player.isInsideVehicle() || player.isSneaking()) {
-                sittingData.stopSitting();
+                Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
+                if (sittingData.isSittingOn(blockBelow.getLocation())) {
+                    sittingData.updateSittingPosition();
+                }
             }
             if (!player.isSneaking()) {
                 sittingData.stopSitting();
