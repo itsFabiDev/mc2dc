@@ -40,10 +40,7 @@ public class SittingListener implements Listener {
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
             if (player.isSneaking()) {
-                Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
-                if (sittingData.isSittingOn(blockBelow.getLocation())) {
-                    sittingData.updateSittingPosition();
-                }
+                sittingData.stopSitting();
             }
             if(player.getLocation().getY() < sittingData.getSittingLocation().getY()+0.5 || player.getLocation().getY() > sittingData.getSittingLocation().getY()-0.5 || player.getLocation().getX() < sittingData.getSittingLocation().getX()+0.5 || player.getLocation().getX() > sittingData.getSittingLocation().getX()-0.5 || player.getLocation().getZ() < sittingData.getSittingLocation().getZ()-0.5 || player.getLocation().getZ() > sittingData.getSittingLocation().getZ()+0.5) {
                 player.teleport(sittingData.getSittingLocation());
