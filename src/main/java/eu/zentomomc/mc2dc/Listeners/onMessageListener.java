@@ -11,26 +11,23 @@ import eu.zentomomc.mc2dc.commands.TPACommand;
 public class onMessageListener implements Listener {
     @EventHandler
     public void onMessage(AsyncPlayerChatEvent event) {
-
-        if (!TPACommand.awaitingResponse) {
-            return;
-        }
         Player player = event.getPlayer();
-        if (!player.getName().equals(TPACommand.tpaReceiver)) {
-            return;
-        }
-        String message = event.getMessage().toLowerCase();
-        if (message.equals("tpaccept")) {
-            TPACommand.onTPAccept(player);
-        } else if (message.equals("tpdeny")) {
-            TPACommand.onTPDeny(player);
+        if (TPACommand.awaitingResponse && player.getName().equals(TPACommand.tpaReceiver)) {
+
+            String message = event.getMessage().toLowerCase();
+            if (message.equals("tpaccept")) {
+                TPACommand.onTPAccept(player);
+            } else if (message.equals("tpdeny")) {
+                TPACommand.onTPDeny(player);
+            } else {
+                player.sendMessage(ChatColor.RED + "Invalid command. Type tpaccept or tpdeny.");
+            }
+            TPACommand.awaitingResponse = false;
         } else {
-            player.sendMessage(ChatColor.RED + "Invalid command. Type tpaccept or tpdeny.");
+            String dcmessage = event.getMessage();
+            event.setFormat(ChatColor.DARK_BLUE + "<" + player.getName().toString() + "> " + ChatColor.WHITE + "%2$s");
+            event.setMessage(event.getMessage());
+            discordbot.sendMessage(dcmessage, player.getUniqueId().toString(), "chat");
         }
-        TPACommand.awaitingResponse = false;
-        String dcmessage = event.getMessage();
-        event.setFormat(ChatColor.DARK_BLUE + "<" + player.getName().toString() + "> " + ChatColor.WHITE + "%2$s");
-        event.setMessage(event.getMessage());
-        discordbot.sendMessage(dcmessage, player.getUniqueId().toString(), "chat");
     }
 }

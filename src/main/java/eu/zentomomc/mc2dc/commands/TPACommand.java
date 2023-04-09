@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class TPACommand implements CommandExecutor {
 
@@ -72,7 +73,13 @@ public class TPACommand implements CommandExecutor {
         Player requester = Bukkit.getPlayer(tpaRequester);
         if (requester != null) {
             requester.sendMessage(ChatColor.YELLOW + tpaReceiver + " has accepted your TPA request.");
-            requester.teleport(player);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    requester.sendMessage(ChatColor.YELLOW + "Teleporting in 5 seconds...");
+                    requester.teleport(player);
+                }
+            }.runTaskLater(Bukkit.getPluginManager().getPlugin("mc2dc"), 20 * 5);
             player.sendMessage(ChatColor.YELLOW + "Teleporting " + tpaRequester + " to you.");
             resetTpa();
         }
