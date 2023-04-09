@@ -15,6 +15,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.vehicle.VehicleExitEvent;
 import org.bukkit.util.Vector;
 
 public class SittingListener implements Listener {
@@ -38,7 +39,24 @@ public class SittingListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        Bukkit.getConsoleSender().sendMessage("Player is inside vehicle or sneaking");
+        SittingData sittingData = SittingData.getSittingData(player);
+        if (sittingData != null) {
+            if (player.isInsideVehicle() || player.isSneaking()) {
+                Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
+                if (sittingData.isSittingOn(blockBelow.getLocation())) {
+                    sittingData.stopSitting();
+                }
+
+            }
+            if (!player.isSneaking()) {
+                sittingData.stopSitting();
+            }
+        }
+    }
+
+    @EventHandler
+    public void onVehicleLeave(VehicleExitEvent event) {
+        Player player = (Player)event.getExited();
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
             if (player.isInsideVehicle() || player.isSneaking()) {
