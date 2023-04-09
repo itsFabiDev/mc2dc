@@ -1,9 +1,10 @@
-/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/SittingListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/DiscordVerifier.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/DiscordStartUpListener.java
+/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/sit/SittingData.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/commands/TPACommand.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/DiscordMcChat.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/discord/DiscordCommandListener.java
+/Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/sit/SittingListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Listeners/QuitListener.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/Mc2dc.java
 /Users/fabi/IdeaProjects/mc2dc/src/main/java/eu/zentomomc/mc2dc/commands/DiscordRestartCommand.java

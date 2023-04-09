@@ -1,6 +1,7 @@
 package eu.zentomomc.mc2dc;
 
 import eu.zentomomc.mc2dc.Listeners.*;
+import eu.zentomomc.mc2dc.Listeners.sit.SittingListener;
 import eu.zentomomc.mc2dc.commands.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
@@ -8,10 +9,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import eu.zentomomc.mc2dc.discord.discordbot;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public final class Mc2dc extends JavaPlugin {
     private PluginManager manager;
