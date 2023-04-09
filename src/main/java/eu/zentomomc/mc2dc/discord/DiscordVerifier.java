@@ -7,6 +7,7 @@ import java.time.OffsetDateTime;
 import java.util.Scanner;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
+import org.bukkit.Bukkit;
 
 public class DiscordVerifier {
     private static final String VERIFIED_PLAYERS_FILE = "verified_players.txt";
@@ -73,6 +74,7 @@ public class DiscordVerifier {
             FileWriter writer = new FileWriter(VERIFIED_PLAYERS_FILE, true);
             writer.write(discordID + ":" + minecraftName + "\n");
             writer.close();
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
