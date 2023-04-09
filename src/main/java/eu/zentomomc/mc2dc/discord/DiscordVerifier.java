@@ -5,7 +5,8 @@ import java.io.*;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.Scanner;
-import eu.zentomomc.mc2dc.discord.discordbot;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
 
 public class DiscordVerifier {
     private static final String VERIFIED_PLAYERS_FILE = "verified_players.txt";
@@ -20,12 +21,27 @@ public class DiscordVerifier {
         // Check if the player is already verified
         if (isPlayerVerified(discordID)) {
             return true;
-        } else if (Duration.between(discordbot.getJda().getGuildById("876088468466450472").getMemberById(discordID).getTimeJoined(), OffsetDateTime.now()).toDays() > 0) {
+        }
+
+        Guild guild = discordbot.getJda().getGuildById("876088468466450472");
+        Member member = guild.getMemberById(discordID);
+        if (member == null) {
+            // Member does not exist in guild
+            return false;
+        }
+
+        OffsetDateTime joinTime = member.getTimeJoined();
+        if (joinTime == null) {
+            // Join time is not available
+            return false;
+        }
+
+        if (Duration.between(joinTime, OffsetDateTime.now()).toDays() > 0) {
             addVerifiedPlayer(discordID, minecraftName);
             return true;
         }
-        return false;
 
+        return false;
     }
 
     /**
