@@ -56,7 +56,7 @@ public class DiscordVerifier {
 
     /**
      * Checks if a Discord user is already verified.
-     * @param discordIDlong The Discord ID of the user.
+     * @param discordID The Discord ID of the user.
      * @return Whether the user is already verified.
      */
     private static boolean isPlayerVerified(String discordID) {
