@@ -43,7 +43,11 @@ public class SittingListener implements Listener {
                 Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
                 if (sittingData.isSittingOn(blockBelow.getLocation())) {
                     sittingData.updateSittingPosition();
+                } else {
+                    sittingData.stopSitting();
                 }
+            } else {
+                event.setCancelled(true);
             }
             if(player.getLocation().getY() < sittingData.getSittingLocation().getY() || player.getLocation().getY() > sittingData.getSittingLocation().getY()) {
                 player.teleport(sittingData.getSittingLocation());
