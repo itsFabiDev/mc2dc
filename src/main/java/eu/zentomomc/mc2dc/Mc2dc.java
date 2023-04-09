@@ -29,6 +29,7 @@ public final class Mc2dc extends JavaPlugin {
         registerListener(new onMessageListener());
         registerListener(new onAdvancementListener());
         registerListener(new SittingListener());
+        registerListener(new ServerRestartListener());
         registerCommand(new TPACommand(), "tpa");
         registerCommand(new DiscordStopCommand(),"stopdc");
         registerCommand(new DiscordStartCommand(),"startdc");
@@ -45,7 +46,6 @@ public final class Mc2dc extends JavaPlugin {
     public void registerCommand (CommandExecutor command, String name) {
         getCommand(name).setExecutor(command);
     }
-
     public void onDisable() {
         // Plugin shutdown logic
         discordbot.stop();

@@ -14,6 +14,7 @@ eu/zentomomc/mc2dc/Listeners/onDeathListener.class
 eu/zentomomc/mc2dc/commands/TPACommand$1.class
 eu/zentomomc/mc2dc/discord/DiscordMcChat.class
 eu/zentomomc/mc2dc/commands/StopPluginCommand.class
+eu/zentomomc/mc2dc/Listeners/ServerRestartListener.class
 eu/zentomomc/mc2dc/Listeners/onAdvancementListener.class
 eu/zentomomc/mc2dc/discord/DiscordStartUpListener.class
 eu/zentomomc/mc2dc/Listeners/JoinListener.class
