@@ -29,28 +29,22 @@ public class DiscordVerifier {
         }
         Guild guild = discordbot.getJda().getGuildById("876088468466450472");
         if (guild == null) {
-            Bukkit.getConsoleSender().sendMessage("Could not find guild!");
             return false;
         }
         Member member = guild.retrieveMemberById(discordID).complete();
         if (member == null) {
-            Bukkit.getConsoleSender().sendMessage("Could not find member!");
             return false;
         }
         OffsetDateTime joinedAt = member.getTimeJoined();
         OffsetDateTime now = OffsetDateTime.now();
         Duration duration = Duration.between(joinedAt, now);
-        Bukkit.getConsoleSender().sendMessage("Duration: " + duration.toDays());
         if (duration.toDays() < 1) {
-            Bukkit.getConsoleSender().sendMessage("Member has not been in the guild for at least one day!");
             return false;
         } else {
             boolean added = addVerifiedPlayer(discordID, minecraftName);
             if (added) {
-                Bukkit.getConsoleSender().sendMessage("Player verified!");
                 return true;
             } else {
-                Bukkit.getConsoleSender().sendMessage("Error adding player to verified list!");
                 return false;
             }
         }
@@ -91,21 +85,19 @@ public class DiscordVerifier {
      * @param minecraftName The Minecraft name of the player.
      */
     private static boolean addVerifiedPlayer(String discordID, String minecraftName) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
-            }
-        }.runTask(Mc2dc.getPlugin(Mc2dc.class));
-
         try {
             FileWriter writer = new FileWriter(VERIFIED_PLAYERS_FILE, true);
             writer.write(discordID + ":" + minecraftName + "\n");
             writer.close();
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
+                }
+            }.runTask(Mc2dc.getPlugin(Mc2dc.class));
             return true;
         } catch (IOException e) {
             e.printStackTrace();
-            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "whitelist remove " + minecraftName);
             return false;
         }
     }
