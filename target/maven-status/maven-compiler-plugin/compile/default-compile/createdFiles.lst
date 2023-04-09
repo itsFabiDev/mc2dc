@@ -1,6 +1,7 @@
 eu/zentomomc/mc2dc/commands/tpacommand/TPACommand.class
 eu/zentomomc/mc2dc/commands/tpacommand/TPADeny.class
 eu/zentomomc/mc2dc/commands/DiscordRestartCommand.class
+eu/zentomomc/mc2dc/discord/DiscordVerifier.class
 eu/zentomomc/mc2dc/discord/DiscordCommandListener.class
 eu/zentomomc/mc2dc/discord/DiscordJoinListener.class
 eu/zentomomc/mc2dc/discord/discordbot.class

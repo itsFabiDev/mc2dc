@@ -5,9 +5,9 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-import eu.zentomomc.mc2dc.discord.*;
 import org.bukkit.Bukkit;
 
 import java.awt.*;
@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 
 public class discordbot {
     private static JDA jda;
+    public static JDA getJda() {
+        return jda;
+    }
     private static String guildID = "876088468466450472";
     //Constructor to start up Discord Bot
     public discordbot (){
@@ -61,7 +64,9 @@ public class discordbot {
 
         jda.updateCommands().addCommands(
                 Commands.slash("ping", "Returns a pong! MCBot is online!"),
-                Commands.slash("tps", "Returns the current TPS of the Server! MCServer is online!")
+                Commands.slash("tps", "Returns the current TPS of the Server! MCServer is online!"),
+                Commands.slash("verify", "Verifies your Minecraft Account with your Discord Account!")
+                        .addOption(OptionType.STRING, "ingamename", "Your Minecraft Username goes here!", true)
         ).queue();
 
     }

@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import eu.zentomomc.mc2dc.commands.tpacommand.TPACommand;
+
 
 public class TPAAccept implements CommandExecutor {
 

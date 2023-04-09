@@ -2,6 +2,7 @@ package eu.zentomomc.mc2dc;
 
 import eu.zentomomc.mc2dc.Listeners.*;
 import eu.zentomomc.mc2dc.commands.tpacommand.TPAAccept;
+
 import eu.zentomomc.mc2dc.commands.tpacommand.TPACommand;
 import eu.zentomomc.mc2dc.commands.tpacommand.TPADeny;
 import org.bukkit.Bukkit;

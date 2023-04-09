@@ -1,5 +1,9 @@
 package eu.zentomomc.mc2dc.commands.tpacommand;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,6 +12,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class TPACommand implements CommandExecutor {
+    private Map<UUID, UUID> requests = new HashMap<>();
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (!(sender instanceof Player)) {
@@ -27,15 +33,43 @@ public class TPACommand implements CommandExecutor {
         }
 
         Player player = (Player) sender;
-        player.sendMessage("Teleportation request sent to " + target.getName());
-
-        // Store the teleportation request information in a temporary storage
-        TPARequests.addTPARequest(target.getUniqueId(), player.getUniqueId());
-
-        // Send the request to the target player
-        target.sendMessage(player.getName() + " has requested to teleport to you. Type '/tpaccept' to accept or '/tpadeny' to deny the request.");
+        requests.put(target.getUniqueId(), player.getUniqueId());
+        player.sendMessage("Teleport request sent to " + target.getName());
 
         return true;
     }
-}
 
+    public void acceptRequest(Player target) {
+        UUID senderId = requests.remove(target.getUniqueId());
+        if (senderId == null) {
+            target.sendMessage("You have no pending teleport requests.");
+            return;
+        }
+
+        Player sender = Bukkit.getPlayer(senderId);
+        if (sender == null) {
+            target.sendMessage("Teleport request sender is no longer online.");
+            return;
+        }
+
+        target.teleport(sender.getLocation());
+        target.sendMessage("Teleported to " + sender.getName());
+    }
+
+    public void denyRequest(Player target) {
+        UUID senderId = requests.remove(target.getUniqueId());
+        if (senderId == null) {
+            target.sendMessage("You have no pending teleport requests.");
+            return;
+        }
+
+        Player sender = Bukkit.getPlayer(senderId);
+        if (sender == null) {
+            target.sendMessage("Teleport request sender is no longer online.");
+            return;
+        }
+
+        sender.sendMessage("Teleport request to " + target.getName() + " was denied.");
+        target.sendMessage("Teleport request from " + sender.getName() + " was denied.");
+    }
+}
