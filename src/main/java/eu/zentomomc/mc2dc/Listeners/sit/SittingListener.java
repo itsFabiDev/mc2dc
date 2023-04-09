@@ -47,14 +47,14 @@ public class SittingListener implements Listener {
                     sittingData.stopSitting();
                 }
             } else {
-                event.setCancelled(true);
+                sittingData.stopSitting();
             }
             if(player.getLocation().getY() < sittingData.getSittingLocation().getY() || player.getLocation().getY() > sittingData.getSittingLocation().getY()) {
                 player.teleport(sittingData.getSittingLocation());
                 player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
                 sittingData.stopSitting();
             } else {
-                event.setCancelled(true);
+                sittingData.stopSitting();
             }
 
         }
