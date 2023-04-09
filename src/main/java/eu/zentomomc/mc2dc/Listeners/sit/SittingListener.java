@@ -38,11 +38,14 @@ public class SittingListener implements Listener {
         if (sittingData != null) {
             if (player.isInsideVehicle() || player.isSneaking()) {
                 Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
+                player.sendMessage("Test1");
                 if (sittingData.isSittingOn(blockBelow.getLocation())) {
+                    player.sendMessage("Test2");
                     sittingData.stopSitting();
                 }
             } else {
                 // Player has moved away from the horse, remove it
+                player.sendMessage("Test3");
                 sittingData.stopSitting();
             }
         }
