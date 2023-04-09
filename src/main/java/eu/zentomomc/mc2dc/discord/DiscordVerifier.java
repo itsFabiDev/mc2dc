@@ -8,9 +8,10 @@ import java.util.Scanner;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import org.bukkit.Bukkit;
+import org.bukkit.command.defaults.BukkitCommand;
 
 public class DiscordVerifier {
-    private static final String VERIFIED_PLAYERS_FILE = "verified_players.txt";
+    private static final String VERIFIED_PLAYERS_FILE = "plugins/verified_players.txt";
 
     /**
      * Verifies a Discord user with a Minecraft player.
@@ -87,14 +88,15 @@ public class DiscordVerifier {
      * @param minecraftName The Minecraft name of the player.
      */
     private static boolean addVerifiedPlayer(String discordID, String minecraftName) {
+        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
         try {
             FileWriter writer = new FileWriter(VERIFIED_PLAYERS_FILE, true);
             writer.write(discordID + ":" + minecraftName + "\n");
             writer.close();
-            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "whitelist remove " + minecraftName);
             return false;
         }
     }
