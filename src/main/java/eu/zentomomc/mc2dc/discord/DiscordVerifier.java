@@ -24,19 +24,34 @@ public class DiscordVerifier {
             return true;
         }
         Guild guild = discordbot.getJda().getGuildById("876088468466450472");
-        Member member = guild.getMemberById(discordID);
-        Bukkit.getConsoleSender().sendMessage("Member: " + member.toString());
-        if(member == null)
+        if (guild == null) {
+            Bukkit.getConsoleSender().sendMessage("Could not find guild!");
             return false;
+        }
+        Member member = guild.getMemberById(discordID);
+        if (member == null) {
+            Bukkit.getConsoleSender().sendMessage("Could not find member!");
+            return false;
+        }
         OffsetDateTime joinedAt = member.getTimeJoined();
         OffsetDateTime now = OffsetDateTime.now();
         Duration duration = Duration.between(joinedAt, now);
         Bukkit.getConsoleSender().sendMessage("Duration: " + duration.toDays());
-        if (duration.toDays() < 1)
+        if (duration.toDays() < 1) {
+            Bukkit.getConsoleSender().sendMessage("Member has not been in the guild for at least one day!");
             return false;
-        else
-            return addVerifiedPlayer(discordID, minecraftName);
+        } else {
+            boolean added = addVerifiedPlayer(discordID, minecraftName);
+            if (added) {
+                Bukkit.getConsoleSender().sendMessage("Player verified!");
+                return true;
+            } else {
+                Bukkit.getConsoleSender().sendMessage("Error adding player to verified list!");
+                return false;
+            }
+        }
     }
+
 
     /**
      * Checks if a Discord user is already verified.
