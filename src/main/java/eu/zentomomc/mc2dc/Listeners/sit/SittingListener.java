@@ -38,9 +38,9 @@ public class SittingListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
+        Bukkit.getConsoleSender().sendMessage("Player is inside vehicle or sneaking");
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
-            Bukkit.getConsoleSender().sendMessage("Player is inside vehicle or sneaking");
             if (player.isInsideVehicle() || player.isSneaking()) {
                 Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
                 if (sittingData.isSittingOn(blockBelow.getLocation())) {
