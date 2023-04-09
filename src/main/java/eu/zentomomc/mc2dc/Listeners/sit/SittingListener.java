@@ -53,10 +53,7 @@ public class SittingListener implements Listener {
                 player.teleport(sittingData.getSittingLocation());
                 player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
                 sittingData.stopSitting();
-            } else {
-                event.setCancelled(true);
             }
-
         }
     }
 }
