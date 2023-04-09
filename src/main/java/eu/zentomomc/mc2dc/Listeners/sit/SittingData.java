@@ -13,7 +13,9 @@ public class SittingData {
 
     private final Player player;
     private final Location sittingLocation;
-
+    public Location getSittingLocation() {
+        return sittingLocation;
+    }
     private boolean isSitting = false;
     private float sittingYaw = 0.0f;
 

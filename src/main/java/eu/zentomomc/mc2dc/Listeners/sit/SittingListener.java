@@ -39,7 +39,7 @@ public class SittingListener implements Listener {
         Player player = event.getPlayer();
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
-            if (player.isSneaking()) {
+            if (player.isSneaking() && sittingData.getSittingLocation() != player.getLocation()) {
                 Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
                 if (sittingData.isSittingOn((Location) blockBelow)) {
                     sittingData.updateSittingPosition();
@@ -49,6 +49,11 @@ public class SittingListener implements Listener {
             } else {
                 sittingData.stopSitting();
             }
+            // Check if player is flying and stop sitting if so
+            if (player.isFlying()) {
+                sittingData.stopSitting();
+            }
+
         }
     }
 }
