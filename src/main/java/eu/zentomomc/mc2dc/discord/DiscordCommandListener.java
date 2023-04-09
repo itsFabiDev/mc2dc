@@ -5,6 +5,8 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.bukkit.Bukkit;
 import eu.zentomomc.mc2dc.discord.DiscordVerifier;
 
+import java.lang.reflect.Array;
+
 public class DiscordCommandListener extends ListenerAdapter {
 
     @Override
@@ -26,6 +28,14 @@ public class DiscordCommandListener extends ListenerAdapter {
                     event.reply("Your Discord Account could not be verified!").queue();
                 }
                 break;
+            case "list":
+                Object[] onlinePlayer = Bukkit.getServer().getOnlinePlayers().toArray();
+                String ausgabe = "";
+                ausgabe = "Currently are " + onlinePlayer.length + " players online: \n";
+                for(Object player : onlinePlayer) {
+                    ausgabe = ausgabe + player.toString() + "\n";
+                }
+                event.reply(ausgabe).queue();
         }
     }
 }
