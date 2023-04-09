@@ -1,6 +1,10 @@
 package eu.zentomomc.mc2dc.Listeners.sit;
 
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Bisected;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Stairs;
@@ -10,6 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.util.Vector;
 
 public class SittingListener implements Listener {
 
@@ -34,8 +39,14 @@ public class SittingListener implements Listener {
         Player player = event.getPlayer();
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
-            if (player.isSneaking()) {
-                sittingData.stopSitting(); // Update the sitting position if the player is sneaking
+            if(player.getLocation().getY() < sittingData.getSittingLocation().getY() || player.getLocation().getY() > sittingData.getSittingLocation().getY()) {
+                player.teleport(sittingData.getSittingLocation());
+                player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+            } else if (player.isSneaking()) {
+                Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
+                if (sittingData.isSittingOn(blockBelow.getLocation())) {
+                    sittingData.updateSittingPosition();
+                }
             }
         }
     }
