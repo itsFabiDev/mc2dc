@@ -57,7 +57,6 @@ public final class Mc2dc extends JavaPlugin {
     public void registerCommand (CommandExecutor command, String name) {
         getCommand(name).setExecutor(command);
     }
-
     public void onDisable() {
         // Plugin shutdown logic
         Bukkit.getConsoleSender().sendMessage("Plugin disabled");
