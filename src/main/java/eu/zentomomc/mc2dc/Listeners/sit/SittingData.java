@@ -53,9 +53,10 @@ public class SittingData {
                         horse.remove();
                     }
                 }
-            }.runTaskLater(Mc2dc.getInstance(), 100);
+            }.runTaskLater(Mc2dc.getInstance(), 100L);
         }
     }
+
 
     public void stopSitting() {
         if (isSitting) {

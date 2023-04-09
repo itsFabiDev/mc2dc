@@ -33,7 +33,6 @@ public class SittingListener implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        Bukkit.getServer().broadcastMessage("Player has moved!");
         Player player = event.getPlayer();
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
