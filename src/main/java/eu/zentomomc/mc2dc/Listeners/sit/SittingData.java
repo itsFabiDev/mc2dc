@@ -1,5 +1,6 @@
 package eu.zentomomc.mc2dc.Listeners.sit;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
@@ -49,7 +50,7 @@ public class SittingData {
             player.setAllowFlight(false);
             player.setFlying(false);
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
-            horse.remove();
+            Bukkit.getServer().getEntity(horse.getUniqueId()).remove();
             isSitting = false;
 
             sittingPlayers.remove(player);
