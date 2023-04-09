@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class QuitListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        String dcmessage = event.getQuitMessage();
+        String dcmessage = player.getName() + " has left the server!";
         event.setQuitMessage(ChatColor.RED + player.getName() + " has left the server!");
         discordbot.sendMessage(dcmessage, event.getPlayer().getUniqueId().toString(), "quit");
     }
