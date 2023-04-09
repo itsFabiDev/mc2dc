@@ -25,6 +25,7 @@ public class DiscordVerifier {
         }
         Guild guild = discordbot.getJda().getGuildById("876088468466450472");
         Member member = guild.getMemberById(discordID);
+        Bukkit.getConsoleSender().sendMessage("Member: " + member.toString());
         if(member == null)
             return false;
         OffsetDateTime joinedAt = member.getTimeJoined();
