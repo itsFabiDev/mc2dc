@@ -59,7 +59,7 @@ public class SittingData {
                 public void run() {
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName()+",type=horse]");
                 }
-            }.runTaskLater(Bukkit.getPluginManager().getPlugin("mc2dc"), 1);
+            }.run();
             sittingPlayers.remove(player);
         }
     }
