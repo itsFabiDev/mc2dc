@@ -30,6 +30,7 @@ public class DiscordVerifier {
         OffsetDateTime joinedAt = member.getTimeJoined();
         OffsetDateTime now = OffsetDateTime.now();
         Duration duration = Duration.between(joinedAt, now);
+        Bukkit.getConsoleSender().sendMessage("Duration: " + duration.toDays());
         if (duration.toDays() < 1)
             return false;
         else
