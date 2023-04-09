@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
@@ -52,7 +53,13 @@ public class SittingData {
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
             Bukkit.getServer().getEntity(horse.getUniqueId()).remove();
             isSitting = false;
-
+            horse.remove();
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName()+",type=horse]");
+                }
+            }.runTaskLater(Bukkit.getPluginManager().getPlugin("mc2dc"), 1);
             sittingPlayers.remove(player);
         }
     }
