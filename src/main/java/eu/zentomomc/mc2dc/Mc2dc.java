@@ -52,7 +52,7 @@ public final class Mc2dc extends JavaPlugin {
 
     public void onDisable() {
         // Plugin shutdown logic
-        bot.stop();
+        discordbot.stop();
         Bukkit.getConsoleSender().sendMessage("Plugin disabled");
     }
 }
