@@ -39,7 +39,7 @@ public class SittingListener implements Listener {
         Player player = event.getPlayer();
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
-            if (player.isSneaking() && sittingData.getSittingLocation() != player.getLocation()) {
+            if (player.isSneaking() && sittingData.getSittingLocation().equals(player.getLocation())) {
                 Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
                 if (sittingData.isSittingOn(blockBelow.getLocation())) {
                     sittingData.updateSittingPosition();
