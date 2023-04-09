@@ -36,6 +36,7 @@ public class SittingData {
             horse.setCustomName(player.getName());
             horse.setCustomNameVisible(false);
             horse.setPassenger(player);
+            horse.setInvisible(true);
 
             sittingPlayers.put(player, this);
         }
