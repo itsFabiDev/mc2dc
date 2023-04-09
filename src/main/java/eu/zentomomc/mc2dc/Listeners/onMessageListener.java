@@ -17,10 +17,13 @@ public class onMessageListener implements Listener {
             String message = event.getMessage().toLowerCase();
             if (message.equals("tpaccept")) {
                 TPACommand.onTPAccept(player);
+                event.setCancelled(true);
             } else if (message.equals("tpdeny")) {
                 TPACommand.onTPDeny(player);
+                event.setCancelled(true);
             } else {
                 player.sendMessage(ChatColor.RED + "Invalid command. Type tpaccept or tpdeny.");
+                event.setCancelled(true);
             }
             TPACommand.awaitingResponse = false;
         } else {

@@ -4,15 +4,9 @@ main: eu.zentomomc.mc2dc.Mc2dc
 api-version: 1.19
 commands:
   tpa:
-    description: Teleport to a player
+    description: Teleport to a player. The player then needs to type tpaccept or tpdeny to accept or deny the request.
     usage: /tpa <player>
     aliases: [tpahere]
-  tpaccept:
-    description: Accept a teleportation request
-    usage: /tpaccept
-  tpdeny:
-    description: Deny a teleportation request
-    usage: /tpdeny
   stopdc:
     description: Stop the Discord bot
     usage: /stopdc

@@ -43,40 +43,23 @@ public class TPACommand implements CommandExecutor {
         tpaReceiver = receiver.getName();
         awaitingResponse = true;
 
-        receiver.sendMessage(ChatColor.YELLOW + tpaRequester + " wants to teleport to you. Type tpaccept to accept or tpdeny to deny.");
-        player.sendMessage(ChatColor.YELLOW + "TPA request sent to " + tpaReceiver + ".");
+        receiver.sendMessage(ChatColor.RED + tpaRequester + " wants to teleport to you. Type tpaccept to accept or tpdeny to deny.");
+        player.sendMessage(ChatColor.RED + "TPA request sent to " + tpaReceiver + ".");
         return true;
     }
 
-    /**@EventHandler
-    public void onPlayerChat(AsyncPlayerChatEvent event) {
-        if (!awaitingResponse) {
-            return;
-        }
-        Player player = event.getPlayer();
-        if (!player.getName().equals(tpaReceiver)) {
-            return;
-        }
-        String message = event.getMessage().toLowerCase();
-        if (message.equals("tpaccept")) {
-            onTPAccept(player);
-        } else if (message.equals("tpdeny")) {
-            onTPDeny(player);
-        } else {
-            player.sendMessage(ChatColor.RED + "Invalid command. Type tpaccept or tpdeny.");
-        }
-        awaitingResponse = false;
-        event.setCancelled(true);
-    }
-    **/
     public static void onTPAccept(Player player) {
         Player requester = Bukkit.getPlayer(tpaRequester);
+        Player receiver = Bukkit.getPlayer(tpaReceiver);
         if (requester != null) {
-            requester.sendMessage(ChatColor.YELLOW + tpaReceiver + " has accepted your TPA request.");
+            requester.sendMessage(ChatColor.GOLD + tpaReceiver + " has accepted your TPA request.");
+            requester.sendMessage(ChatColor.RED + "Teleporting in 5 seconds...");
+            receiver.sendMessage(ChatColor.RED + "Teleporting " + tpaRequester + " to you in 5 seconds...\n" +
+                    "Please stand still. And get to a safe place.");
+
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    requester.sendMessage(ChatColor.YELLOW + "Teleporting in 5 seconds...");
                     requester.teleport(player);
                 }
             }.runTaskLater(Bukkit.getPluginManager().getPlugin("mc2dc"), 20 * 5);
@@ -88,8 +71,8 @@ public class TPACommand implements CommandExecutor {
     public static void onTPDeny(Player player) {
         Player requester = Bukkit.getPlayer(tpaRequester);
         if (requester != null) {
-            requester.sendMessage(ChatColor.YELLOW + tpaReceiver + " has denied your TPA request.");
-            player.sendMessage(ChatColor.YELLOW + "TPA request denied.");
+            requester.sendMessage(ChatColor.RED + tpaReceiver + " has denied your TPA request.");
+            player.sendMessage(ChatColor.RED + "TPA request denied.");
             resetTpa();
         }
     }
