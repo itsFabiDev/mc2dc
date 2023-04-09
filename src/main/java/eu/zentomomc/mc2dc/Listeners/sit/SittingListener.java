@@ -39,8 +39,16 @@ public class SittingListener implements Listener {
         Player player = event.getPlayer();
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
-            if (player.isSneaking())
-                sittingData.stopSitting();
+            if (player.isSneaking()) {
+                Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
+                if (sittingData.isSittingOn(blockBelow.getLocation())) {
+                    sittingData.updateSittingPosition();
+                }
+            }
+            if(player.getLocation().getY() < sittingData.getSittingLocation().getY() || player.getLocation().getY() > sittingData.getSittingLocation().getY()) {
+                player.teleport(sittingData.getSittingLocation());
+                player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_TELEPORT, 1, 1);
+            }
         }
     }
 }
