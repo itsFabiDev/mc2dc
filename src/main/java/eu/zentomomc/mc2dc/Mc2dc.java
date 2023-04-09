@@ -20,7 +20,6 @@ public final class Mc2dc extends JavaPlugin {
     public static Mc2dc getInstance() {
         return instance;
     }
-    public Map<UUID, UUID> tpaRequests = new HashMap<>();
     private discordbot bot;
     public void onEnable() {
         // Plugin startup logic

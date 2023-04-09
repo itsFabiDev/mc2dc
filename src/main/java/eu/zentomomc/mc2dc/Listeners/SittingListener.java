@@ -8,15 +8,17 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-
 import org.bukkit.util.Vector;
+
 public class SittingListener implements Listener {
     private static boolean isSitting = false;
+
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (event.getAction().toString().contains("RIGHT_CLICK")
-                && player.getLocation().getBlock().getType().toString().contains("STAIRS")) {
+                && event.getClickedBlock() != null
+                && event.getClickedBlock().getType().toString().contains("STAIRS")) {
             isSitting = true;
             player.setSneaking(true);
             player.setVelocity(new Vector(0, 0, 0));
@@ -31,11 +33,11 @@ public class SittingListener implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        if(isSitting) {
+        if (isSitting) {
             Player player = event.getPlayer();
             Location location = player.getLocation();
             if (player.isSneaking()) {
-                if (location.getBlock().getType() != Material.OAK_STAIRS) {
+                if (!location.getBlock().getType().toString().contains("STAIRS")) {
                     isSitting = false;
                     player.setSneaking(false);
                     player.setGravity(true);
