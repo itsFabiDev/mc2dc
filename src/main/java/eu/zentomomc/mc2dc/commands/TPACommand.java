@@ -10,11 +10,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-public class TPACommand implements CommandExecutor, Listener {
+public class TPACommand implements CommandExecutor {
 
-    private String tpaRequester;
-    private String tpaReceiver;
-    private boolean awaitingResponse;
+    public static String tpaRequester;
+    public static String tpaReceiver;
+    public static boolean awaitingResponse;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -44,11 +44,10 @@ public class TPACommand implements CommandExecutor, Listener {
 
         receiver.sendMessage(ChatColor.YELLOW + tpaRequester + " wants to teleport to you. Type tpaccept to accept or tpdeny to deny.");
         player.sendMessage(ChatColor.YELLOW + "TPA request sent to " + tpaReceiver + ".");
-
         return true;
     }
 
-    @EventHandler
+    /**@EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         if (!awaitingResponse) {
             return;
@@ -68,8 +67,8 @@ public class TPACommand implements CommandExecutor, Listener {
         awaitingResponse = false;
         event.setCancelled(true);
     }
-
-    public void onTPAccept(Player player) {
+    **/
+    public static void onTPAccept(Player player) {
         Player requester = Bukkit.getPlayer(tpaRequester);
         if (requester != null) {
             requester.sendMessage(ChatColor.YELLOW + tpaReceiver + " has accepted your TPA request.");
@@ -79,7 +78,7 @@ public class TPACommand implements CommandExecutor, Listener {
         }
     }
 
-    public void onTPDeny(Player player) {
+    public static void onTPDeny(Player player) {
         Player requester = Bukkit.getPlayer(tpaRequester);
         if (requester != null) {
             requester.sendMessage(ChatColor.YELLOW + tpaReceiver + " has denied your TPA request.");
@@ -88,7 +87,7 @@ public class TPACommand implements CommandExecutor, Listener {
         }
     }
 
-    private void resetTpa() {
+    private static void resetTpa() {
         tpaRequester = null;
         tpaReceiver = null;
         awaitingResponse = false;
