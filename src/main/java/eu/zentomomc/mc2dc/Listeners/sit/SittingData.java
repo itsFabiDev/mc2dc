@@ -26,17 +26,19 @@ public class SittingData {
 
     public void startSitting() {
         if (!isSitting) {
-            player.setSneaking(true);
+            player.setSneaking(false);
             player.setVelocity(new Vector(0, 0, 0));
             player.setGravity(false);
-            player.setAllowFlight(true);
-            player.setFlying(true);
+            player.setAllowFlight(false);
+            player.setFlying(false);
             player.sendTitle("", "§c§lSitting", 0, 20, 0);
             sittingYaw = player.getLocation().getYaw();
             horse = (Horse) player.getWorld().spawnEntity(sittingLocation.clone().add(0.5, -0.5, 0.5), EntityType.HORSE);
             horse.setInvulnerable(true);
             horse.setTamed(true);
             horse.setOwner(player);
+            horse.setAdult();
+            horse.addPassenger(player);
             horse.setPassenger(player);
             horse.setInvisible(true);
             horse.setSilent(true);
