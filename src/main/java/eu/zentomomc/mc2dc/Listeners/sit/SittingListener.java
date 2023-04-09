@@ -47,10 +47,7 @@ public class SittingListener implements Listener {
                 if (sittingData.isSittingOn(blockBelow.getLocation())) {
                     sittingData.updateSittingPosition();
                 }
-            } else {
-                event.setCancelled(true);
             }
-
         }
     }
 }
