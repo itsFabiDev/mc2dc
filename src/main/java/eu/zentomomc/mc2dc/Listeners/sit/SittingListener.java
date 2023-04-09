@@ -50,7 +50,7 @@ public class SittingListener implements Listener {
                 sittingData.stopSitting();
             }
             // Check if player is flying and stop sitting if so
-            if (player.isFlying()) {
+            if (player.isFlying() && player.getLocation().getY() > sittingData.getSittingLocation().getY()) {
                 sittingData.stopSitting();
             }
 
