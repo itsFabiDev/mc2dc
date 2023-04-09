@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import org.bukkit.Bukkit;
 import org.bukkit.command.defaults.BukkitCommand;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class DiscordVerifier {
     private static final String VERIFIED_PLAYERS_FILE = "plugins/verified_players.txt";
@@ -90,9 +91,13 @@ public class DiscordVerifier {
      * @param minecraftName The Minecraft name of the player.
      */
     private static boolean addVerifiedPlayer(String discordID, String minecraftName) {
-        Bukkit.getScheduler().runTask(Mc2dc.getInstance(), () -> {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
-        });
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
+            }
+        }.runTask(Mc2dc.getPlugin(Mc2dc.class));
+
         try {
             FileWriter writer = new FileWriter(VERIFIED_PLAYERS_FILE, true);
             writer.write(discordID + ":" + minecraftName + "\n");
