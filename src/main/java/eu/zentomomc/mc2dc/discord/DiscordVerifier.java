@@ -5,6 +5,8 @@ import java.io.*;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.Scanner;
+
+import eu.zentomomc.mc2dc.Mc2dc;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import org.bukkit.Bukkit;
@@ -88,7 +90,9 @@ public class DiscordVerifier {
      * @param minecraftName The Minecraft name of the player.
      */
     private static boolean addVerifiedPlayer(String discordID, String minecraftName) {
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
+        Bukkit.getScheduler().runTask(Mc2dc.getInstance(), () -> {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "whitelist add " + minecraftName);
+        });
         try {
             FileWriter writer = new FileWriter(VERIFIED_PLAYERS_FILE, true);
             writer.write(discordID + ":" + minecraftName + "\n");
