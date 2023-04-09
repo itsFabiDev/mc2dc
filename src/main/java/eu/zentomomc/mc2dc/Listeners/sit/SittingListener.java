@@ -35,7 +35,7 @@ public class SittingListener implements Listener {
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
             if (player.isSneaking()) {
-                sittingData.updateSittingPosition(); // Update the sitting position if the player is sneaking
+                sittingData.stopSitting(); // Update the sitting position if the player is sneaking
             }
         }
     }
