@@ -47,7 +47,7 @@ public class SittingData {
             player.setAllowFlight(false);
             player.setFlying(false);
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
-            player.teleport(sittingLocation.add(1, 4, 1));
+            player.teleport(sittingLocation.add(1, 2, 1));
             isSitting = false;
 
             sittingPlayers.remove(player);
