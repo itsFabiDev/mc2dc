@@ -12,8 +12,12 @@ import org.bukkit.Bukkit;
 
 import java.awt.*;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class discordbot {
+    static ZoneId berlinZone = ZoneId.of("Europe/Berlin");
+    static LocalDateTime now = LocalDateTime.now(berlinZone);
+
     private static JDA jda;
     public static JDA getJda() {
         return jda;
@@ -74,7 +78,7 @@ public class discordbot {
     public static boolean sendMessage(String message, String uuid, String event) {
         EmbedBuilder eb = new EmbedBuilder();
         eb.setAuthor(message, null, "https://mc-heads.net/head/" + uuid);
-        eb.setTimestamp(LocalDateTime.now());
+        eb.setTimestamp(now);
         if(event.equals("join"))
             eb.setColor(Color.GREEN);
         if(event.equals("quit"))
