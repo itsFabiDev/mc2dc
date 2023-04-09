@@ -20,6 +20,7 @@ public class SittingListener implements Listener {
                 && event.getClickedBlock().getType().name().endsWith("_STAIRS")) {
             if (!isSitting) {
                 isSitting = true;
+                sitLocation = player.getLocation();
                 player.teleport(event.getClickedBlock().getLocation().add(0.5, -0.25, 0.5));
                 player.setSneaking(true);
                 player.setVelocity(new Vector(0, player.getVelocity().getY(), 0));
@@ -27,12 +28,9 @@ public class SittingListener implements Listener {
                 player.setAllowFlight(true);
                 player.setFlying(true);
                 player.sendTitle("", "§c§lSitting", 0, 20, 0);
-                sitLocation = player.getLocation();
                 sitLocation.setYaw(player.getLocation().getYaw());
                 sitLocation.setPitch(0);
                 sitLocation.add(0.5, -0.25, 0.5);
-                player.teleport(sitLocation);
-                event.setCancelled(true);
             }
         }
     }
