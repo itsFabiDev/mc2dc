@@ -5,9 +5,9 @@ eu/zentomomc/mc2dc/discord/DiscordCommandListener.class
 eu/zentomomc/mc2dc/discord/DiscordJoinListener.class
 eu/zentomomc/mc2dc/discord/discordbot.class
 eu/zentomomc/mc2dc/Listeners/onMessageListener.class
+eu/zentomomc/mc2dc/Listeners/SittingListener.class
 eu/zentomomc/mc2dc/commands/TPACommand.class
 eu/zentomomc/mc2dc/commands/DiscordStopCommand.class
-eu/zentomomc/mc2dc/Listeners/onBlockInteractListener.class
 eu/zentomomc/mc2dc/Listeners/QuitListener.class
 eu/zentomomc/mc2dc/commands/DiscordStartCommand.class
 eu/zentomomc/mc2dc/Listeners/onDeathListener.class
