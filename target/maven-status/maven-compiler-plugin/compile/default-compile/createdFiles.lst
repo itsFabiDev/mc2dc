@@ -1,14 +1,11 @@
 eu/zentomomc/mc2dc/discord/DiscordVerifier$1.class
-eu/zentomomc/mc2dc/commands/tpacommand/TPACommand.class
-eu/zentomomc/mc2dc/commands/tpacommand/TPADeny.class
 eu/zentomomc/mc2dc/commands/DiscordRestartCommand.class
 eu/zentomomc/mc2dc/discord/DiscordVerifier.class
 eu/zentomomc/mc2dc/discord/DiscordCommandListener.class
 eu/zentomomc/mc2dc/discord/DiscordJoinListener.class
 eu/zentomomc/mc2dc/discord/discordbot.class
 eu/zentomomc/mc2dc/Listeners/onMessageListener.class
-eu/zentomomc/mc2dc/commands/tpacommand/TPAAccept.class
-eu/zentomomc/mc2dc/commands/tpacommand/TPARequests.class
+eu/zentomomc/mc2dc/commands/TPACommand.class
 eu/zentomomc/mc2dc/commands/DiscordStopCommand.class
 eu/zentomomc/mc2dc/Listeners/onBlockInteractListener.class
 eu/zentomomc/mc2dc/Listeners/QuitListener.class

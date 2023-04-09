@@ -1,19 +1,13 @@
 package eu.zentomomc.mc2dc;
 
 import eu.zentomomc.mc2dc.Listeners.*;
-import eu.zentomomc.mc2dc.commands.tpacommand.TPAAccept;
-
-import eu.zentomomc.mc2dc.commands.tpacommand.TPACommand;
-import eu.zentomomc.mc2dc.commands.tpacommand.TPADeny;
+import eu.zentomomc.mc2dc.commands.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import eu.zentomomc.mc2dc.discord.discordbot;
-
-//Import Listeners
-import eu.zentomomc.mc2dc.commands.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,8 +34,6 @@ public final class Mc2dc extends JavaPlugin {
         registerListener(new onAdvancementListener());
         registerListener(new onBlockInteractListener());
         registerCommand(new TPACommand(), "tpa");
-        registerCommand(new TPAAccept(), "tpaccept");
-        registerCommand(new TPADeny(), "tpdeny");
         registerCommand(new DiscordStopCommand(),"stopdc");
         registerCommand(new DiscordStartCommand(),"startdc");
         registerCommand(new DiscordRestartCommand(),"restartdc");
@@ -57,6 +49,7 @@ public final class Mc2dc extends JavaPlugin {
     public void registerCommand (CommandExecutor command, String name) {
         getCommand(name).setExecutor(command);
     }
+
     public void onDisable() {
         // Plugin shutdown logic
         Bukkit.getConsoleSender().sendMessage("Plugin disabled");
