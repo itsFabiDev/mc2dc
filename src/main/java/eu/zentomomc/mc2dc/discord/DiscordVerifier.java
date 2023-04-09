@@ -18,7 +18,7 @@ public class DiscordVerifier {
      * @param minecraftName The Minecraft name of the player.
      * @return Whether the verification was successful.
      */
-    public static boolean verify(String discordID, String minecraftName) {
+    public static boolean verify(long discordID, String minecraftName) {
         // Check if the player is already verified
         if (isPlayerVerified(discordID)) {
             return true;
@@ -28,7 +28,7 @@ public class DiscordVerifier {
             Bukkit.getConsoleSender().sendMessage("Could not find guild!");
             return false;
         }
-        Member member = guild.getMembersByName(discordID, true).get(0);
+        Member member = guild.getMemberById(discordID);
         Bukkit.getConsoleSender().sendMessage("Member: " + member.getNickname());
         if (member == null) {
             Bukkit.getConsoleSender().sendMessage("Could not find member!");
@@ -56,10 +56,11 @@ public class DiscordVerifier {
 
     /**
      * Checks if a Discord user is already verified.
-     * @param discordID The Discord ID of the user.
+     * @param discordIDlong The Discord ID of the user.
      * @return Whether the user is already verified.
      */
-    private static boolean isPlayerVerified(String discordID) {
+    private static boolean isPlayerVerified(long discordIDlong) {
+        String discordID = discordbot.getJda().getGuildById("876088468466450472").getMemberById(discordIDlong).getId();
         try {
             File verifiedPlayersFile = new File(VERIFIED_PLAYERS_FILE);
             Scanner scanner = new Scanner(verifiedPlayersFile);
@@ -87,7 +88,7 @@ public class DiscordVerifier {
      * @param discordID The Discord ID of the user.
      * @param minecraftName The Minecraft name of the player.
      */
-    private static boolean addVerifiedPlayer(String discordID, String minecraftName) {
+    private static boolean addVerifiedPlayer(long discordID, String minecraftName) {
         try {
             FileWriter writer = new FileWriter(VERIFIED_PLAYERS_FILE, true);
             writer.write(discordID + ":" + minecraftName + "\n");

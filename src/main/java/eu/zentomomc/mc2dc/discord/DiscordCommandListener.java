@@ -19,7 +19,7 @@ public class DiscordCommandListener extends ListenerAdapter {
                 break;
             case "verify":
                 String ingamename = event.getOption("ingamename").getAsString();
-                boolean verified = DiscordVerifier.verify(event.getUser().getName(), ingamename);
+                boolean verified = DiscordVerifier.verify(event.getUser().getIdLong(), ingamename);
                 if (verified) {
                     event.reply("Your Discord Account was successfully verified!").queue();
                 } else {
