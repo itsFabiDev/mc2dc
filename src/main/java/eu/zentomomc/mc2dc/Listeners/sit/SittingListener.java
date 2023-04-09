@@ -1,5 +1,6 @@
 package eu.zentomomc.mc2dc.Listeners.sit;
 
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Bisected;
@@ -32,6 +33,7 @@ public class SittingListener implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
+        Bukkit.getServer().broadcastMessage("Player has moved!");
         Player player = event.getPlayer();
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
