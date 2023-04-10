@@ -3,6 +3,9 @@ package eu.zentomomc.mc2dc.Listeners.sit;
 import eu.zentomomc.mc2dc.Mc2dc;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
@@ -26,6 +29,7 @@ public class SittingData {
     }
     private float sittingYaw = 0.0f;
     private Horse horse;
+    private Block blockBelow;
     private BukkitTask deleteTask;
 
     public SittingData(Player player, Location sittingLocation) {
@@ -50,7 +54,16 @@ public class SittingData {
             horse.setPassenger(player);
             horse.setInvisible(true);
             horse.setPersistent(false);
+
+            // Check if there is no block directly below the horse
+            Location horseLocation = horse.getLocation();
+            blockBelow = horseLocation.getBlock().getRelative(BlockFace.DOWN);
+            if (blockBelow.getType() == Material.AIR) {
+                // Spawn a barrier block directly below the horse to prevent it from falling
+                blockBelow.setType(Material.BARRIER);
+            }
         }
+
     }
 
 
@@ -69,6 +82,9 @@ public class SittingData {
             horse.remove();
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
             sittingPlayers.remove(player);
+            if(blockBelow.getType() == Material.BARRIER) {
+                blockBelow.setType(Material.AIR);
+            }
         }
     }
 
