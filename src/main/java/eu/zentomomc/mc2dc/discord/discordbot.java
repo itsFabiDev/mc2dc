@@ -71,7 +71,9 @@ public class discordbot {
                 Commands.slash("tps", "Returns the current TPS of the Server! MCServer is online!"),
                 Commands.slash("verify", "Verifies your Minecraft Account with your Discord Account!")
                         .addOption(OptionType.STRING, "ingamename", "Your Minecraft Username goes here!", true),
-                Commands.slash("list", "Returns a list of all online players!")
+                Commands.slash("list", "Returns a list of all online players!"),
+                Commands.slash("help", "Returns a list of all commands!"),
+                Commands.slash("features", "Returns a list of all features!")
         ).queue();
 
     }
