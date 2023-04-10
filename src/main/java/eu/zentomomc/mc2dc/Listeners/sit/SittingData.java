@@ -62,9 +62,9 @@ public class SittingData {
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
             isSitting = false;
             player.teleport(tpBack);
-            player.sendMessage(horse.getUniqueId());
+            Bukkit.getServer().broadcastMessage(horse.getUniqueId().toString());
             horse.remove();
-            //Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
             sittingPlayers.remove(player);
         }
     }
