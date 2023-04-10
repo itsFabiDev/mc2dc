@@ -57,7 +57,6 @@ public class SittingData {
 
             // Check if there is no block directly below the horse
             Location horseLocation = horse.getLocation();
-            blockBelow = horseLocation.getBlock().getRelative(BlockFace.DOWN);
             /**if (blockBelow.getType() == Material.AIR) {
                 // Spawn a barrier block directly below the horse to prevent it from falling
                 blockBelow.setType(Material.BARRIER);
@@ -86,9 +85,9 @@ public class SittingData {
             horse.remove();
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
             sittingPlayers.remove(player);
-            if(blockBelow.getType() == Material.BARRIER) {
+            /**if(blockBelow.getType() == Material.BARRIER) {
                 blockBelow.setType(Material.AIR);
-            }
+            }**/
         }
     }
 
