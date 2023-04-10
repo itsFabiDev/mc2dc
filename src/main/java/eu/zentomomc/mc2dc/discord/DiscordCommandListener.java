@@ -73,7 +73,7 @@ public class DiscordCommandListener extends ListenerAdapter {
                 String feature = event.getOption("feature").getAsString();
                 event.reply("Your feature request was sent to the developer!").queue();
                 String message = "A new feature request was sent: " + feature + " by " + event.getMember().getNickname();
-                event.getJDA().getUserByTag("Itsfabidvev","3107").openPrivateChannel().queue(channel -> {
+                event.getJDA().getUserById("334794651041136641").openPrivateChannel().queue(channel -> {
                     channel.sendMessage(message).queue();
                 });
                 break;
