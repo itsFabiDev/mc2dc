@@ -29,7 +29,7 @@ public class SittingData {
     }
     private float sittingYaw = 0.0f;
     private Horse horse;
-    private Block blockBelow;
+    public Block blockBelow;
     private BukkitTask deleteTask;
 
     public SittingData(Player player, Location sittingLocation) {
