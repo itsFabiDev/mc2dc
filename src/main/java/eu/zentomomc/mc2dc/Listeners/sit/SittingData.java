@@ -65,7 +65,8 @@ public class SittingData {
             player.teleport(tpBack);
             Bukkit.getServer().getEntity(horse.getUniqueId()).remove();
             horse.setPersistent(false);
-            horse.teleport(new Location(Bukkit.getWorld("world"), 0, -100, 0)); // Teleport the horse to a special location
+            Location specialHorselocation = new Location(horse.getWorld(), 0, -250, 0);
+            horse.teleport(specialHorselocation); // Teleport the horse to a special location
             horse.remove();
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
             sittingPlayers.remove(player);
