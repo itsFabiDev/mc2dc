@@ -60,11 +60,11 @@ public class SittingData {
             player.setAllowFlight(false);
             player.setFlying(false);
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
-            horse.remove();
             isSitting = false;
             player.teleport(tpBack);
             player.sendMessage(horse.getUniqueId());
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
+            horse.remove();
+            //Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
             sittingPlayers.remove(player);
         }
     }
