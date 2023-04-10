@@ -19,6 +19,7 @@ public class SittingData {
 
     private final Player player;
     private final Location sittingLocation;
+    private final Location tpBack;
     private boolean isSitting = false;
     public boolean isSitting() {
         return isSitting;
@@ -30,6 +31,7 @@ public class SittingData {
     public SittingData(Player player, Location sittingLocation) {
         this.player = player;
         this.sittingLocation = sittingLocation;
+        this.tpBack = player.getLocation();
     }
 
     public void startSitting() {
@@ -60,7 +62,7 @@ public class SittingData {
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
             horse.remove();
             isSitting = false;
-            player.teleport(sittingLocation.clone().add(0.5, 0.0, 0.5));
+            player.teleport(tpBack);
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=Minecraft:horse]");
             sittingPlayers.remove(player);
         }
