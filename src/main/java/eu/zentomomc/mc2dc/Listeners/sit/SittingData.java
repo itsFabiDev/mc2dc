@@ -63,11 +63,10 @@ public class SittingData {
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
             isSitting = false;
             player.teleport(tpBack);
-            Bukkit.getServer().getEntity(horse.getUniqueId()).remove();
             horse.setPersistent(false);
             Location specialHorselocation = new Location(horse.getWorld(), 0, -250, 0);
             horse.teleport(specialHorselocation);// Teleport the horse to a special location
-            player.sendMessage(horse.getLocation().toString());
+            Bukkit.getServer().getEntity(horse.getUniqueId()).remove();
             horse.remove();
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
             sittingPlayers.remove(player);
