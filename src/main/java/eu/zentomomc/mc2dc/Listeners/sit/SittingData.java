@@ -55,11 +55,11 @@ public class SittingData {
             horse.setInvisible(true);
             horse.setPersistent(false);
 
-            // Check if there is no block directly below the horse
-            Location horseLocation = horse.getLocation();
-            blockBelow = horseLocation.getBlock().getRelative(BlockFace.DOWN);
+            // Check if there is no block directly below the player's feet
+            Location playerLocation = player.getLocation();
+            blockBelow = playerLocation.getBlock().getRelative(BlockFace.DOWN);
             if (blockBelow.getType() == Material.AIR) {
-                // Spawn a barrier block directly below the horse to prevent it from falling
+                // Spawn a barrier block directly below the player to prevent them from falling
                 blockBelow.setType(Material.BARRIER);
             }
         } else {
@@ -77,6 +77,7 @@ public class SittingData {
             }
         }
     }
+
 
 
 
