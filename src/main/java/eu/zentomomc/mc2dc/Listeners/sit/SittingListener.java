@@ -35,13 +35,14 @@ public class SittingListener implements Listener {
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         SittingData sittingData = SittingData.getSittingData(player);
-        if(SittingData.getSittingData(player).isSitting()) {
-            if(player.isSneaking() || !player.isInsideVehicle()) {
-                SittingData.getSittingData(player).stopSitting();
+        if (sittingData != null && sittingData.isSitting()) {
+            if (player.isSneaking() || !player.isInsideVehicle()) {
+                sittingData.stopSitting();
             } else {
-                event.isCancelled();
+                event.setCancelled(true);
             }
         }
     }
+
 
 }
