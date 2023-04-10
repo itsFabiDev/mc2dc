@@ -48,6 +48,7 @@ public class SittingData {
 
 
     public void stopSitting() {
+        Bukkit.getServer().broadcastMessage("Test3");
         if (isSitting) {
             player.setSneaking(false);
             player.setGravity(true);
