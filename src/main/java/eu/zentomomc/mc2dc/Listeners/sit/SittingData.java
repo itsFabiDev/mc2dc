@@ -37,7 +37,7 @@ public class SittingData {
             sittingPlayers.put(player, this);
             isSitting = true;
             // Spawn an invisible horse at the sitting location
-            horse = (Horse) player.getWorld().spawnEntity(sittingLocation, EntityType.HORSE);
+            horse = (Horse) sittingLocation.getWorld().spawnEntity(sittingLocation.add(0, -1.5, 0), EntityType.HORSE);
             horse.setAdult();
             horse.setTamed(true);
             horse.setOwner(player);
