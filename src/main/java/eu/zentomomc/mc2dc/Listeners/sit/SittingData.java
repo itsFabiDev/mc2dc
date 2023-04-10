@@ -62,9 +62,22 @@ public class SittingData {
                 // Spawn a barrier block directly below the horse to prevent it from falling
                 blockBelow.setType(Material.BARRIER);
             }
-        }
+        } else {
+            Location playerLocation = player.getLocation();
+            Block blockAtPlayerFeet = playerLocation.getBlock().getRelative(BlockFace.DOWN);
 
+            if (blockAtPlayerFeet.getType() == Material.AIR) {
+                if (blockBelow.getType() == Material.BARRIER) {
+                    blockBelow.setType(Material.AIR);
+                }
+
+                // Spawn a barrier block directly below the player to prevent them from falling
+                blockAtPlayerFeet.setType(Material.BARRIER);
+                blockBelow = blockAtPlayerFeet;
+            }
+        }
     }
+
 
 
     public void stopSitting() {
