@@ -2,6 +2,7 @@ package eu.zentomomc.mc2dc.discord;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -73,9 +74,14 @@ public class DiscordCommandListener extends ListenerAdapter {
                 String feature = event.getOption("feature").getAsString();
                 event.reply("Your feature request was sent to the developer!").queue();
                 String message = "A new feature request was sent: " + feature + " by " + event.getMember().getNickname();
-                event.getJDA().getUserById("334794651041136641").openPrivateChannel().queue(channel -> {
-                    channel.sendMessage(message).queue();
-                });
+                User user = event.getJDA().getUserById("334794651041136641");
+                if (user != null) {
+                    user.openPrivateChannel().queue(channel -> {
+                        channel.sendMessage(message).queue();
+                    });
+                } else {
+                    event.reply("The developer could not be found!").queue();
+                }
                 break;
         }
     }
