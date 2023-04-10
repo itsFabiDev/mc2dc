@@ -37,7 +37,7 @@ public class SittingData {
             sittingPlayers.put(player, this);
             isSitting = true;
             // Spawn an invisible horse at the sitting location
-            horse = (Horse) sittingLocation.getWorld().spawnEntity(sittingLocation.add(0.5, 0, 0.5), EntityType.HORSE);
+            horse = (Horse) sittingLocation.getWorld().spawnEntity(sittingLocation.add(0.5, -1.0, 0.5), EntityType.HORSE);
             horse.setAdult();
             horse.setTamed(true);
             horse.setOwner(player);
@@ -60,7 +60,7 @@ public class SittingData {
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
             horse.remove();
             isSitting = false;
-
+            player.teleport(sittingLocation.clone().add(0.5, 0.0, 0.5));
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=Minecraft:horse]");
             sittingPlayers.remove(player);
         }
