@@ -1,6 +1,7 @@
 package eu.zentomomc.mc2dc.discord;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -66,6 +67,16 @@ public class DiscordCommandListener extends ListenerAdapter {
                 embed.addField("Minecraft Sit", "Sits down when you right click a stair", false);
                 TextChannel textChannel = event.getJDA().getTextChannelById(event.getChannel().getId());
                 textChannel.sendMessageEmbeds(embed.build()).queue();
+                event.reply("The features are sent to the Discord Chat").queue();
+                break;
+            case "featurerequest":
+                String feature = event.getOption("feature").getAsString();
+                event.reply("Your feature request was sent to the developer!").queue();
+                String message = "A new feature request was sent: " + feature + " by " + event.getMember().getNickname();
+                event.getJDA().getUserByTag("Itsfabidvev","3107").openPrivateChannel().queue(channel -> {
+                    channel.sendMessage(message).queue();
+                });
+                break;
         }
     }
 }

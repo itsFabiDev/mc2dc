@@ -73,7 +73,9 @@ public class discordbot {
                         .addOption(OptionType.STRING, "ingamename", "Your Minecraft Username goes here!", true),
                 Commands.slash("list", "Returns a list of all online players!"),
                 Commands.slash("help", "Returns a list of all commands!"),
-                Commands.slash("features", "Returns a list of all features!")
+                Commands.slash("features", "Returns a list of all features!"),
+                Commands.slash("featurerequest", "Sends a feature request to the developer!")
+                        .addOption(OptionType.STRING, "feature", "Your feature request goes here!", true)
         ).queue();
 
     }
