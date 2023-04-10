@@ -1,6 +1,7 @@
 package eu.zentomomc.mc2dc.discord;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.bukkit.Bukkit;
@@ -63,7 +64,8 @@ public class DiscordCommandListener extends ListenerAdapter {
                 embed.addField("Discord Ping", "Sends a pong! to the Discord Chat", false);
                 embed.addField("Discord Features", "Sends this list", false);
                 embed.addField("Minecraft Sit", "Sits down when you right click a stair", false);
-                event.reply(embed.build().toString()).queue();
+                TextChannel textChannel = event.getJDA().getTextChannelById(event.getChannel().getId());
+                textChannel.sendMessageEmbeds(embed.build()).queue();
         }
     }
 }
