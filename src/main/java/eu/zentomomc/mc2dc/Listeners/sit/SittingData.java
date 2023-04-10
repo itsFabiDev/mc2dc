@@ -53,6 +53,9 @@ public class SittingData {
             player.setAllowFlight(false);
             player.setFlying(false);
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
+            if (deleteTask != null) {
+                deleteTask.cancel(); // cancel the deleteTask if it exists
+            }
             horse.remove();
             isSitting = false;
 
