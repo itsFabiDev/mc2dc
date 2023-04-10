@@ -34,6 +34,7 @@ public class SittingListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
+        player.sendMessage("Test0");
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null) {
             if (player.isInsideVehicle() || player.isSneaking()) {
