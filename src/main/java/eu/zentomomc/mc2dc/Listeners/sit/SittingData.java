@@ -65,9 +65,12 @@ public class SittingData {
                 @Override
                 public void run() {
                     horse.remove();
+                    Bukkit.getServer().broadcastMessage("Test");
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=Minecraft:horse]");
                 }
             }.runTaskLater(Mc2dc.getInstance(), 5);
+            Bukkit.getServer().broadcastMessage("Test2");
+
 
             sittingPlayers.remove(player);
         }
