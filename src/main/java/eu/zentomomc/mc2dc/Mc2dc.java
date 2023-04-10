@@ -2,6 +2,7 @@ package eu.zentomomc.mc2dc;
 
 import eu.zentomomc.mc2dc.Listeners.*;
 import eu.zentomomc.mc2dc.Listeners.sit.SittingListener;
+import eu.zentomomc.mc2dc.Listeners.sit.onPlayerMove;
 import eu.zentomomc.mc2dc.commands.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
@@ -30,6 +31,7 @@ public final class Mc2dc extends JavaPlugin {
         registerListener(new onAdvancementListener());
         registerListener(new SittingListener());
         registerListener(new ServerRestartListener());
+        registerListener(new onPlayerMove());
         registerCommand(new TPACommand(), "tpa");
         registerCommand(new DiscordStopCommand(),"stopdc");
         registerCommand(new DiscordStartCommand(),"startdc");
