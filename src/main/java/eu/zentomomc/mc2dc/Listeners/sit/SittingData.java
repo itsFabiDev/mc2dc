@@ -63,6 +63,7 @@ public class SittingData {
             horse.remove();
             isSitting = false;
             player.teleport(tpBack);
+            Bukkit.getServer().getEntity(horse.getUniqueId()).remove();
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
             sittingPlayers.remove(player);
         }
