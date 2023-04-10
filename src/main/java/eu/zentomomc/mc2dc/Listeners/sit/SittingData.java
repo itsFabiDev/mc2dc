@@ -69,6 +69,7 @@ public class SittingData {
 
     public void stopSitting() {
         if (isSitting) {
+            blockBelow.setType(Material.AIR);
             player.setSneaking(false);
             player.setGravity(true);
             player.setAllowFlight(false);
