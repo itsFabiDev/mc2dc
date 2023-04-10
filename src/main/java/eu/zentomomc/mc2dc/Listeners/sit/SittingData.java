@@ -61,18 +61,7 @@ public class SittingData {
             horse.remove();
             isSitting = false;
 
-            // Delete the horse after 5 seconds
-            if (deleteTask != null) {
-                deleteTask.cancel();
-            }
-            deleteTask = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    horse.remove();
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=Minecraft:horse]");
-                }
-            }.runTaskLater(Mc2dc.getInstance(), 5);
-
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=Minecraft:horse]");
             sittingPlayers.remove(player);
         }
     }
