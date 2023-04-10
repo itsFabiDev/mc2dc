@@ -48,34 +48,31 @@ public class SittingData {
 
 
     public void stopSitting() {
-        Bukkit.getServer().broadcastMessage("Test3");
         if (isSitting) {
             player.setSneaking(false);
             player.setGravity(true);
             player.setAllowFlight(false);
             player.setFlying(false);
             player.sendTitle("", "§a§lStanding up", 0, 20, 0);
-            if (deleteTask != null) {
-                deleteTask.cancel(); // cancel the deleteTask if it exists
-            }
             horse.remove();
             isSitting = false;
 
             // Delete the horse after 5 seconds
+            if (deleteTask != null) {
+                deleteTask.cancel();
+            }
             deleteTask = new BukkitRunnable() {
                 @Override
                 public void run() {
                     horse.remove();
-                    Bukkit.getServer().broadcastMessage("Test");
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=Minecraft:horse]");
                 }
             }.runTaskLater(Mc2dc.getInstance(), 5);
-            Bukkit.getServer().broadcastMessage("Test2");
-
 
             sittingPlayers.remove(player);
         }
     }
+
 
     public void updateSittingPosition() {
         if (isSitting) {
