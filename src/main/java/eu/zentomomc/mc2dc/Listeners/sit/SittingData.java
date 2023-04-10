@@ -49,6 +49,7 @@ public class SittingData {
             horse.setCustomNameVisible(false);
             horse.setPassenger(player);
             horse.setInvisible(true);
+            horse.setPersistent(false);
         }
     }
 
@@ -63,6 +64,7 @@ public class SittingData {
             isSitting = false;
             player.teleport(tpBack);
             Bukkit.getServer().getEntity(horse.getUniqueId()).remove();
+            horse.setPersistent(false);
             horse.remove();
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kill @e[name=" + player.getName() + ",type=minecraft:horse]");
             sittingPlayers.remove(player);
