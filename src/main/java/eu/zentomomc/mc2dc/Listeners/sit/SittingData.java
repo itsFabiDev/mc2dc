@@ -34,6 +34,7 @@ public class SittingData {
 
     public void startSitting() {
         if (!isSitting) {
+            sittingPlayers.put(player, this);
             isSitting = true;
             // Spawn an invisible horse at the sitting location
             horse = (Horse) player.getWorld().spawnEntity(sittingLocation, EntityType.HORSE);
