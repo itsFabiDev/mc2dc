@@ -20,6 +20,9 @@ public class SittingData {
     private final Player player;
     private final Location sittingLocation;
     private boolean isSitting = false;
+    public boolean isSitting() {
+        return isSitting;
+    }
     private float sittingYaw = 0.0f;
     private Horse horse;
     private BukkitTask deleteTask;

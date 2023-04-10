@@ -34,20 +34,12 @@ public class SittingListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("Test0");
         SittingData sittingData = SittingData.getSittingData(player);
-        if (sittingData != null) {
-            if (player.isInsideVehicle() || player.isSneaking()) {
-                Block blockBelow = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
-                player.sendMessage("Test1");
-                if (sittingData.isSittingOn(blockBelow.getLocation())) {
-                    player.sendMessage("Test2");
-                    sittingData.stopSitting();
-                }
+        if(SittingData.getSittingData(player).isSitting()) {
+            if(player.isSneaking() || !player.isInsideVehicle()) {
+                SittingData.getSittingData(player).stopSitting();
             } else {
-                // Player has moved away from the horse, remove it
-                player.sendMessage("Test3");
-                sittingData.stopSitting();
+                event.isCancelled();
             }
         }
     }
