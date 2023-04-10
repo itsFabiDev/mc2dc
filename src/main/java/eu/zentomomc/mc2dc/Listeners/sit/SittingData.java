@@ -87,7 +87,7 @@ public class SittingData {
     public boolean isSittingOn(Location location) {
         if (isSitting) {
             return location.getWorld().equals(sittingLocation.getWorld()) &&
-                    location.distanceSquared(sittingLocation) <= 0.25;
+                    location.distanceSquared(horse.getLocation()) <= 0.25;
         }
         return false;
     }
