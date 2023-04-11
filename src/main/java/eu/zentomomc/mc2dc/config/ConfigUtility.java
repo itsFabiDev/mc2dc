@@ -13,7 +13,7 @@ public class ConfigUtility {
     private final YamlConfiguration config;
 
     public ConfigUtility(String filename) {
-        File dir = new File("./plugins/OTCutils/");
+        File dir = new File("./plugins/mc2dc/");
 
         if (!dir.exists())
             dir.mkdirs();
