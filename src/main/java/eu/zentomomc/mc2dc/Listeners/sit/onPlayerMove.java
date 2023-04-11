@@ -11,7 +11,7 @@ public class onPlayerMove implements Listener {
         Player player = event.getPlayer();
         SittingData sittingData = SittingData.getSittingData(player);
         if (sittingData != null && sittingData.isSitting()) {
-            if (player.isJumping() || !player.isInsideVehicle()) {
+            if (player.isSneaking() || !player.isInsideVehicle()) {
                 sittingData.stopSitting();
             } else {
                 event.setCancelled(true);
