@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -27,6 +28,10 @@ public class discordbot {
     static YamlConfiguration config = Mc2dc.getInstance().getConfiguration();
     private static String guildID = config.getString("discord.guildID", "");
 
+    private static User developer = jda.getUserById(Long.valueOf("334794651041136641"));
+    public static User getDeveloper() {
+        return developer;
+    }
 
     //Constructor to start up Discord Bot
     public discordbot (){
