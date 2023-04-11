@@ -38,6 +38,14 @@ public class SittingData {
         this.tpBack = player.getLocation();
     }
 
+    public static Player[] players() {
+        Player[] returner = new Player[sittingPlayers.size()];
+        for(int i = 0; i < sittingPlayers.size(); i++) {
+            returner[i] = sittingPlayers.get(i).player;
+        }
+        return returner;
+    }
+
     public void startSitting() {
         if (!isSitting) {
             sittingPlayers.put(player, this);

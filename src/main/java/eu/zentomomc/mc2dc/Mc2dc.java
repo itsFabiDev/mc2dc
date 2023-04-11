@@ -1,12 +1,14 @@
 package eu.zentomomc.mc2dc;
 
 import eu.zentomomc.mc2dc.Listeners.*;
+import eu.zentomomc.mc2dc.Listeners.sit.SittingData;
 import eu.zentomomc.mc2dc.Listeners.sit.SittingListener;
 import eu.zentomomc.mc2dc.Listeners.sit.onPlayerMove;
 import eu.zentomomc.mc2dc.commands.*;
 import eu.zentomomc.mc2dc.config.ConfigUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -61,6 +63,9 @@ public final class Mc2dc extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         discordbot.stop();
+        for(Player player: SittingData.players()) {
+            SittingData.getSittingData(player).stopSitting();
+        }
         Bukkit.getConsoleSender().sendMessage("Plugin disabled");
     }
 
