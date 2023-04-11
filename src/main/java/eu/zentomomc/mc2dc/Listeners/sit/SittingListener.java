@@ -18,18 +18,21 @@ public class SittingListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Block clickedBlock = event.getClickedBlock();
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && event.getPlayer().isSneaking() && clickedBlock != null) {
-            BlockData blockData = clickedBlock.getBlockData();
-            if (blockData instanceof Stairs) {
-                if(SittingData.getSittingData(player) != null) {
-                    if (SittingData.getSittingData(player).blockBelow.getType() == Material.BARRIER && SittingData.getSittingData(player).isSitting()) {
-                        SittingData.getSittingData(player).stopSitting();
+        if(event.getPlayer().isSneaking()) {
+            event.getPlayer().setSneaking(false);
+            if (event.getAction() == Action.RIGHT_CLICK_BLOCK && clickedBlock != null) {
+                BlockData blockData = clickedBlock.getBlockData();
+                if (blockData instanceof Stairs) {
+                    if (SittingData.getSittingData(player) != null) {
+                        if (SittingData.getSittingData(player).blockBelow.getType() == Material.BARRIER && SittingData.getSittingData(player).isSitting()) {
+                            SittingData.getSittingData(player).stopSitting();
+                        }
                     }
-                }
-                Stairs stairsData = (Stairs) blockData;
-                if (stairsData.getHalf() == Bisected.Half.BOTTOM) {
-                    SittingData sittingData = new SittingData(player, clickedBlock.getLocation());
-                    sittingData.startSitting();
+                    Stairs stairsData = (Stairs) blockData;
+                    if (stairsData.getHalf() == Bisected.Half.BOTTOM) {
+                        SittingData sittingData = new SittingData(player, clickedBlock.getLocation());
+                        sittingData.startSitting();
+                    }
                 }
             }
         }
