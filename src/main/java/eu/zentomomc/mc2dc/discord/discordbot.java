@@ -13,7 +13,7 @@ import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.Bukkit;
-
+import java.util.List;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -120,10 +120,20 @@ public class discordbot {
         stop();
         start();
     }
-    private static User developer = Mc2dc.getBot().getJda().getUserByTag("Itsfabidev#3107");
+    private static User developer;
     public static User getDeveloper() {
+        if (developer == null) {
+            List<User> users = Mc2dc.getBot().getJda().getUsersByName("Itsfabidev", true);
+            for (User user : users) {
+                if (user.getDiscriminator().equals("3107")) {
+                    developer = user;
+                    break;
+                }
+            }
+        }
         return developer;
     }
+
 
 
 }
