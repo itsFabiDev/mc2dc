@@ -58,6 +58,18 @@ public class discordbot {
         builder.setActivity(Activity.playing("Minecraft"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
         builder.enableIntents(GatewayIntent.MESSAGE_CONTENT);
+        builder.enableIntents(GatewayIntent.GUILD_MESSAGES);
+        builder.enableIntents(GatewayIntent.GUILD_MESSAGE_REACTIONS);
+        builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
+        builder.enableIntents(GatewayIntent.GUILD_PRESENCES);
+        builder.enableIntents(GatewayIntent.GUILD_VOICE_STATES);
+        builder.enableIntents(GatewayIntent.DIRECT_MESSAGES);
+        builder.enableIntents(GatewayIntent.DIRECT_MESSAGE_REACTIONS);
+        builder.enableIntents(GatewayIntent.DIRECT_MESSAGE_TYPING);
+        builder.enableIntents(GatewayIntent.GUILD_INVITES);
+        builder.enableIntents(GatewayIntent.GUILD_MESSAGE_TYPING);
+        builder.enableIntents(GatewayIntent.GUILD_WEBHOOKS);
+        builder.enableIntents(GatewayIntent.GUILD_BANS);
         builder.addEventListeners(commandListener);
         builder.addEventListeners(joinListener);
         builder.addEventListeners(startUpListener);
@@ -121,18 +133,27 @@ public class discordbot {
         start();
     }
     private static User developer;
+
     public static User getDeveloper() {
         if (developer == null) {
             List<User> users = Mc2dc.getBot().getJda().getUsersByName("Itsfabidev", true);
             for (User user : users) {
                 if (user.getDiscriminator().equals("3107")) {
-                    developer = user;
+                    String guildId = "your-guild-id";
+                    String memberId = user.getId();
+                    Mc2dc.getBot().getJda().getGuildById(guildId).retrieveMemberById(memberId).queue(member -> {
+                        developer = member.getUser();
+                    }, error -> {
+                        // Handle the error
+                    });
                     break;
                 }
             }
         }
         return developer;
     }
+
+
 
 
 
