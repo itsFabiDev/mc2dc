@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class discordbot {
     static ZoneId berlinZone = ZoneId.of("Europe/Berlin");
@@ -141,17 +144,23 @@ public class discordbot {
                 if (user.getDiscriminator().equals("3107")) {
                     String guildId = "your-guild-id";
                     String memberId = user.getId();
-                    Mc2dc.getBot().getJda().getGuildById(guildId).retrieveMemberById(memberId).queue(member -> {
+
+                    CompletableFuture<Member> future = new CompletableFuture<>();
+                    Mc2dc.getBot().getJda().getGuildById(guildId).retrieveMemberById(memberId).queue(future::complete, future::completeExceptionally);
+
+                    try {
+                        Member member = future.get();
                         developer = member.getUser();
-                    }, error -> {
-                        Bukkit.getConsoleSender().sendMessage(error.getMessage().toString());
-                    });
+                    } catch (InterruptedException | ExecutionException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 }
             }
         }
         return developer;
     }
+
 
 
 
