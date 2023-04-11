@@ -19,7 +19,6 @@ public class SittingListener implements Listener {
         Player player = event.getPlayer();
         Block clickedBlock = event.getClickedBlock();
         if(event.getPlayer().isSneaking()) {
-            event.getPlayer().setSneaking(false);
             if (event.getAction() == Action.RIGHT_CLICK_BLOCK && clickedBlock != null) {
                 BlockData blockData = clickedBlock.getBlockData();
                 if (blockData instanceof Stairs) {
