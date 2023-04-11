@@ -144,7 +144,7 @@ public class discordbot {
                     Mc2dc.getBot().getJda().getGuildById(guildId).retrieveMemberById(memberId).queue(member -> {
                         developer = member.getUser();
                     }, error -> {
-                        // Handle the error
+                        Bukkit.getConsoleSender().sendMessage(error.getMessage().toString());
                     });
                     break;
                 }
