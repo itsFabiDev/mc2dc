@@ -5,13 +5,6 @@ on:
     branches:
       - main
 
-name: Build Jar
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   build:
     runs-on: ubuntu-latest
