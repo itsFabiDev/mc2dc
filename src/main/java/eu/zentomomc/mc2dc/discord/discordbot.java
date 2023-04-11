@@ -120,13 +120,8 @@ public class discordbot {
         stop();
         start();
     }
-    private static User developer;
+    private static User developer = Mc2dc.getBot().getJda().getUserByTag("Itsfabidev#3107");
     public static User getDeveloper() {
-        if (developer == null) {
-            jda.retrieveUserById("334794651041136641").queue(user -> {
-                developer = user;
-            });
-        }
         return developer;
     }
 

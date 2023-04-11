@@ -22,7 +22,7 @@ public final class Mc2dc extends JavaPlugin {
     public static Mc2dc getInstance() {
         return instance;
     }
-    private discordbot bot;
+    private static discordbot bot;
 
     private ConfigUtility config;
     public void onLoad() {
@@ -67,6 +67,10 @@ public final class Mc2dc extends JavaPlugin {
             SittingData.getSittingData(player).stopSitting();
         }
         Bukkit.getConsoleSender().sendMessage("Plugin disabled");
+    }
+
+    public static discordbot getBot() {
+        return bot;
     }
 
     public YamlConfiguration getConfiguration() {
