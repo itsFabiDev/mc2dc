@@ -28,11 +28,6 @@ public class discordbot {
     static YamlConfiguration config = Mc2dc.getInstance().getConfiguration();
     private static String guildID = config.getString("discord.guildID", "");
 
-    private static User developer = jda.getUserById(Long.valueOf("334794651041136641"));
-    public static User getDeveloper() {
-        return developer;
-    }
-
     //Constructor to start up Discord Bot
     public discordbot (){
         init();
@@ -125,5 +120,15 @@ public class discordbot {
         stop();
         start();
     }
+    private static User developer;
+    public static User getDeveloper() {
+        if (developer == null) {
+            jda.retrieveUserById("334794651041136641").queue(user -> {
+                developer = user;
+            });
+        }
+        return developer;
+    }
+
 
 }
