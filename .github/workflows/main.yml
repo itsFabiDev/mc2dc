@@ -5,7 +5,7 @@ on:
     branches:
       - main
 
-name: Maven Build
+name: Build Jar
 
 on:
   push:
