@@ -18,6 +18,7 @@ public class SittingListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Block clickedBlock = event.getClickedBlock();
+        player.sendMessage(event.getPlayer().getInventory().getItemInMainHand().toString());
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && clickedBlock != null && event.getPlayer().getInventory().getItemInMainHand() == null) {
             BlockData blockData = clickedBlock.getBlockData();
             if (blockData instanceof Stairs) {
