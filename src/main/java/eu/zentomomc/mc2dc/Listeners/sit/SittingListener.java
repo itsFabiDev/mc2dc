@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class SittingListener implements Listener {
 
@@ -18,8 +19,8 @@ public class SittingListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Block clickedBlock = event.getClickedBlock();
-        player.sendMessage(event.getPlayer().getInventory().getItemInMainHand().toString());
-        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && clickedBlock != null && event.getPlayer().getInventory().getItemInMainHand() == null) {
+        ItemStack itemStack = new ItemStack(Material.AIR);
+        if (event.getAction() == Action.RIGHT_CLICK_BLOCK && clickedBlock != null && event.getPlayer().getInventory().getItemInMainHand() == itemStack) {
             BlockData blockData = clickedBlock.getBlockData();
             if (blockData instanceof Stairs) {
                 if(SittingData.getSittingData(player) != null) {
