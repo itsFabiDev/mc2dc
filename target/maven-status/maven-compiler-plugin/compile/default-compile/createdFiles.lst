@@ -15,6 +15,7 @@ eu/zentomomc/mc2dc/Listeners/sit/SittingData.class
 eu/zentomomc/mc2dc/discord/DiscordVerifier$1.class
 eu/zentomomc/mc2dc/Listeners/sit/SittingListener.class
 eu/zentomomc/mc2dc/discord/DiscordCommandListener.class
+eu/zentomomc/mc2dc/config/ConfigUtility.class
 eu/zentomomc/mc2dc/Listeners/sit/onPlayerMove.class
 eu/zentomomc/mc2dc/commands/TPACommand.class
 eu/zentomomc/mc2dc/commands/TPACommand$1.class

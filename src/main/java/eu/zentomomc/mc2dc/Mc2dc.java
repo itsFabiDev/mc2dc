@@ -4,12 +4,14 @@ import eu.zentomomc.mc2dc.Listeners.*;
 import eu.zentomomc.mc2dc.Listeners.sit.SittingListener;
 import eu.zentomomc.mc2dc.Listeners.sit.onPlayerMove;
 import eu.zentomomc.mc2dc.commands.*;
+import eu.zentomomc.mc2dc.config.ConfigUtility;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import eu.zentomomc.mc2dc.discord.discordbot;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 public final class Mc2dc extends JavaPlugin {
     private PluginManager manager;
@@ -19,6 +21,14 @@ public final class Mc2dc extends JavaPlugin {
         return instance;
     }
     private discordbot bot;
+
+    private ConfigUtility config;
+    public void onLoad() {
+        instance = this;
+        this.config = new ConfigUtility("config.yml");
+    }
+
+
     public void onEnable() {
         // Plugin startup logic
         bot = new discordbot();
@@ -53,4 +63,9 @@ public final class Mc2dc extends JavaPlugin {
         discordbot.stop();
         Bukkit.getConsoleSender().sendMessage("Plugin disabled");
     }
+
+    public YamlConfiguration getConfiguration() {
+        return config.getConfig();
+    }
+
 }

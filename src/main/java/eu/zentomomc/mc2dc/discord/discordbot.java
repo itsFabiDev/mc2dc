@@ -1,5 +1,7 @@
 package eu.zentomomc.mc2dc.discord;
 
+import eu.zentomomc.mc2dc.Mc2dc;
+import eu.zentomomc.mc2dc.config.ConfigUtility;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -8,6 +10,7 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.Bukkit;
 
 import java.awt.*;
@@ -17,12 +20,14 @@ import java.time.ZoneId;
 public class discordbot {
     static ZoneId berlinZone = ZoneId.of("Europe/Berlin");
     static LocalDateTime now = LocalDateTime.now(berlinZone);
-
     private static JDA jda;
     public static JDA getJda() {
         return jda;
     }
-    private static String guildID = "876088468466450472";
+    static YamlConfiguration config = Mc2dc.getInstance().getConfiguration();
+    private static String guildID = config.getString("discord.guildID", "");
+
+
     //Constructor to start up Discord Bot
     public discordbot (){
         init();
@@ -36,7 +41,7 @@ public class discordbot {
         }
 
 
-        String token = Token.getToken();
+        String token = config.getString("discord.token", "");
 
         if (guildID.isEmpty() || token.isEmpty()) {
             Bukkit.getConsoleSender().sendMessage("Discord was not activated, because of an error");
@@ -94,7 +99,7 @@ public class discordbot {
         if (event.equals("advancement"))
             eb.setColor(Color.YELLOW);
 
-        TextChannel textChannel = jda.getTextChannelById("1088163336065122446");
+        TextChannel textChannel = jda.getTextChannelById(config.getString("discord.mc_chat_channel", ""));
         if (textChannel == null) {
             return false;
         }
