@@ -98,6 +98,8 @@ public class discordbot {
                 Commands.slash("list", "Returns a list of all online players!"),
                 Commands.slash("help", "Returns a list of all commands!"),
                 Commands.slash("features", "Returns a list of all features!"),
+                Commands.slash("featurerequest", "Requests a new feature!")
+                                .addOption(OptionType.STRING, "feature", "Your wanted feature goes here!", true),
                 Commands.slash("developerfeatures", "Returns the wanted developer features!")
                         .addOption(OptionType.STRING, "feature", "Your wanted developer feature goes here!", true)
                 ).queue();
