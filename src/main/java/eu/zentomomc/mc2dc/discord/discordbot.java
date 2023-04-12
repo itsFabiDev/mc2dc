@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.Bukkit;
 import org.checkerframework.checker.units.qual.C;
@@ -81,6 +82,7 @@ public class discordbot {
         builder.addEventListeners(joinListener);
         builder.addEventListeners(startUpListener);
         builder.addEventListeners(onMessageListener);
+        builder.setMemberCachePolicy(MemberCachePolicy.ALL);
         jda = builder.build();
 
         try {
