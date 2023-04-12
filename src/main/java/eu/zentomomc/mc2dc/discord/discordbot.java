@@ -32,7 +32,7 @@ public class discordbot {
     }
     static YamlConfiguration config = Mc2dc.getInstance().getConfiguration();
     private static String guildID = config.getString("discord.guildID", "");
-    public static boolean developerFeatures = config.getBoolean("discord.developerFeatures",true);
+    public static boolean developerFeatures = Boolean.parseBoolean(config.getString("discord.developerFeatures", ""));
 
 
     //Constructor to start up Discord Bot
