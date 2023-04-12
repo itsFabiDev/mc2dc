@@ -75,13 +75,13 @@ public class DiscordCommandListener extends ListenerAdapter {
             case "featurerequest":
                 String feature = event.getOption("feature").getAsString();
                 String message = "A new feature request was sent: " + feature + " by " + event.getMember().getNickname();
-                try {
-                    User user = discordbot.getJda().getUserById("334794651041136641");
+                User user;
+                if(discordbot.getJda().getUserById("334794651041136641") != null) {
+                    user = discordbot.getJda().getUserById("334794651041136641");
                     PrivateChannel channel = user.openPrivateChannel().complete();
                     channel.sendMessage(message).queue();
                     event.reply("Your feature request was sent!").queue();
-                } catch (Exception e) {
-                    Bukkit.getConsoleSender().sendMessage(e.toString());
+                } else {
                     event.reply("Your feature request could not be sent!").queue();
                 }
                 break;
