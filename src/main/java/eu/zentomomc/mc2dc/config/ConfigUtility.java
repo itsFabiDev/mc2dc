@@ -35,7 +35,7 @@ public class ConfigUtility {
         setDefault("discord.token", "");
         setDefault("discord.guildID", "");
         setDefault("discord.mc_chat_channel", "");
-        setDefault("discord.developerFeatures", "true");
+        setDefault("discord.developerFeatures", true);
         this.save();
     }
 
