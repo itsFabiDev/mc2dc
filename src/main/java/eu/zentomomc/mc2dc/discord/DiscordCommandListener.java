@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.channel.concrete.PrivateChannel;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -74,15 +75,11 @@ public class DiscordCommandListener extends ListenerAdapter {
             case "featurerequest":
                 String feature = event.getOption("feature").getAsString();
                 String message = "A new feature request was sent: " + feature + " by " + event.getMember().getNickname();
-                if (event.getGuild().getMemberById("334794651041136641") != null) {
-                    Member member = event.getGuild().getMemberById("334794651041136641");
-                    member.getUser().openPrivateChannel().queue(channel -> {
-                        channel.sendMessage(message).queue();
-                    });
-                    event.reply("Your feature request was sent to the developer!").queue();
-                } else {
-                    event.reply("The developer could not be found!").queue();
-                }
+                User user = discordbot.getJda().getUserById("334794651041136641");
+                PrivateChannel channel = user.openPrivateChannel().complete();
+                channel.sendMessage(message).queue();
+                event.reply("Your feature request was sent!").queue();
+
                 break;
             case "developerfeatures":
                 String option = event.getOption("feature").getAsString();
