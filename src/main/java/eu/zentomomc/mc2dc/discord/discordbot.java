@@ -141,15 +141,5 @@ public class discordbot {
         stop();
         start();
     }
-    private static User developer = jda.getUserById("334794651041136641");
-
-    public static User getDeveloper() {
-        return developer;
-    }
-
-
-
-
-
 
 }
