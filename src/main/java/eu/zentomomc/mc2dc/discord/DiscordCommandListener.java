@@ -86,7 +86,7 @@ public class DiscordCommandListener extends ListenerAdapter {
                 break;
             **/
             case "developerfeatures":
-                String option = event.getOption("option").getAsString();
+                String option = event.getOption("feature").getAsString();
                 if(discordbot.developerFeatures) {
                     switch (option) {
                         case "enable":
