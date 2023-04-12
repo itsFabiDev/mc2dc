@@ -30,6 +30,8 @@ public class discordbot {
     }
     static YamlConfiguration config = Mc2dc.getInstance().getConfiguration();
     private static String guildID = config.getString("discord.guildID", "");
+    public static boolean developerFeatures = config.getBoolean("discord.developerFeatures");
+
 
     //Constructor to start up Discord Bot
     public discordbot (){
@@ -135,32 +137,12 @@ public class discordbot {
         stop();
         start();
     }
-    private static User developer;
+    /**private static User developer = jda.getUserById("334794651041136641");
 
     public static User getDeveloper() {
-        if (developer == null) {
-            List<User> users = Mc2dc.getBot().getJda().getUsersByName("Itsfabidev", true);
-            for (User user : users) {
-                if (user.getDiscriminator().equals("3107")) {
-                    String guildId = "your-guild-id";
-                    String memberId = user.getId();
-
-                    CompletableFuture<Member> future = new CompletableFuture<>();
-                    Mc2dc.getBot().getJda().getGuildById(guildId).retrieveMemberById(memberId).queue(future::complete, future::completeExceptionally);
-
-                    try {
-                        Member member = future.get();
-                        developer = member.getUser();
-                    } catch (InterruptedException | ExecutionException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                }
-            }
-        }
         return developer;
     }
-
+    **/
 
 
 

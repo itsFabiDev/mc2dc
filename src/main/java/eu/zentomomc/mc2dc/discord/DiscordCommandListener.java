@@ -71,7 +71,7 @@ public class DiscordCommandListener extends ListenerAdapter {
                 textChannel.sendMessageEmbeds(embed.build()).queue();
                 event.reply("The features are sent to the Discord Chat").queue();
                 break;
-            case "featurerequest":
+            /**case "featurerequest":
                 String feature = event.getOption("feature").getAsString();
                 String message = "A new feature request was sent: " + feature + " by " + event.getMember().getNickname();
                 if (discordbot.getDeveloper() != null) {
@@ -83,7 +83,46 @@ public class DiscordCommandListener extends ListenerAdapter {
                 } else {
                     event.reply("The developer could not be found!").queue();
                 }
-
+                break;
+            **/
+            case "developerfeatures":
+                String option = event.getOption("option").getAsString();
+                if(discordbot.developerFeatures) {
+                    switch (option) {
+                        case "enable":
+                            discordbot.developerFeatures = true;
+                            event.reply("Developer features are now enabled!").queue();
+                            break;
+                        case "disable":
+                            discordbot.developerFeatures = false;
+                            event.reply("Developer features are now disabled!").queue();
+                            break;
+                        case "status":
+                            if (discordbot.developerFeatures) {
+                                event.reply("Developer features are enabled!").queue();
+                            } else {
+                                event.reply("Developer features are disabled!").queue();
+                            }
+                            break;
+                        case "id":
+                            event.reply("Your User ID is: " + event.getUser().getId().toString()).queue();
+                            break;
+                        case "features":
+                            TextChannel textChannel1 = event.getJDA().getTextChannelById(event.getChannel().getId());
+                            EmbedBuilder embed1 = new EmbedBuilder();
+                            embed1.setTitle("Developer Features");
+                            embed1.setColor(Color.RED);
+                            embed1.addField("Developer Features Status", "Developer features are enabled!", false);
+                            embed1.addField("Developer Features ID", "Your User ID is: " + event.getUser().getId().toString(), false);
+                            embed1.addField("Discord Gateway Ping", "The current Gateway ping is: " + String.valueOf(discordbot.getJda().getGatewayPing()), false);
+                            embed1.addField("Discord REST Ping", "The current REST ping is: " + String.valueOf(discordbot.getJda().getRestPing().complete()), false);
+                            textChannel1.sendMessageEmbeds(embed1.build()).queue();
+                            event.reply("The developer features are sent to the Discord Chat").queue();
+                            break;
+                    }
+                } else {
+                    event.reply("Developer features are disabled!").queue();
+                }
         }
     }
 }
