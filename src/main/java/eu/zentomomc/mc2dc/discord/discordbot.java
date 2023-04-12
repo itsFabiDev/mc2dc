@@ -14,6 +14,8 @@ import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.Bukkit;
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.List;
 import java.awt.*;
 import java.time.LocalDateTime;
@@ -96,8 +98,10 @@ public class discordbot {
                 Commands.slash("list", "Returns a list of all online players!"),
                 Commands.slash("help", "Returns a list of all commands!"),
                 Commands.slash("features", "Returns a list of all features!"),
-                Commands.slash("featurerequest", "Sends a feature request to the developer!")
-                        .addOption(OptionType.STRING, "feature", "Your feature request goes here!", true)
+                //Commands.slash("featurerequest", "Sends a feature request to the developer!")
+                //        .addOption(OptionType.STRING, "feature", "Your feature request goes here!", true),
+                Commands.slash("developerfeatures", "Returns the wanted developer features!")
+                        .addOption(OptionType.STRING, "feature", "Your wanted developer feature goes here!", true)
         ).queue();
 
     }
