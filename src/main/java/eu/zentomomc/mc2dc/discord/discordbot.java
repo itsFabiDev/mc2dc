@@ -99,8 +99,9 @@ public class discordbot {
                 Commands.slash("help", "Returns a list of all commands!"),
                 Commands.slash("features", "Returns a list of all features!"),
                 Commands.slash("developerfeatures", "Returns the wanted developer features!")
-                        .addOption(OptionType.STRING, "feature", "Your wanted developer feature goes here!", true)
-
+                        .addOption(OptionType.STRING, "feature", "Your wanted developer feature goes here!", true),
+                Commands.slash("featureRequest", "Sends a feature request to the developer!")
+                        .addOption(OptionType.STRING, "feature", "Your feature request goes here!", true)
         ).queue();
 
     }
@@ -140,12 +141,12 @@ public class discordbot {
         stop();
         start();
     }
-    /**private static User developer = jda.getUserById("334794651041136641");
+    private static User developer = jda.getUserById("334794651041136641");
 
     public static User getDeveloper() {
         return developer;
     }
-    **/
+
 
 
 

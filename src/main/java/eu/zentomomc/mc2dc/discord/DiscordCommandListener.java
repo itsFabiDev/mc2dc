@@ -71,7 +71,7 @@ public class DiscordCommandListener extends ListenerAdapter {
                 textChannel.sendMessageEmbeds(embed.build()).queue();
                 event.reply("The features are sent to the Discord Chat").queue();
                 break;
-            /**case "featurerequest":
+            case "featurerequest":
                 String feature = event.getOption("feature").getAsString();
                 String message = "A new feature request was sent: " + feature + " by " + event.getMember().getNickname();
                 if (discordbot.getDeveloper() != null) {
@@ -84,7 +84,6 @@ public class DiscordCommandListener extends ListenerAdapter {
                     event.reply("The developer could not be found!").queue();
                 }
                 break;
-            **/
             case "developerfeatures":
                 String option = event.getOption("feature").getAsString();
                 if(discordbot.developerFeatures) {
