@@ -81,7 +81,7 @@ public class DiscordCommandListener extends ListenerAdapter {
                     channel.sendMessage(message).queue();
                     event.reply("Your feature request was sent!").queue();
                 } catch (Exception e) {
-                    event.getUser().openPrivateChannel().complete().sendMessage(e.toString()).queue();
+                    Bukkit.getConsoleSender().sendMessage(e.toString());
                     event.reply("Your feature request could not be sent!").queue();
                 }
                 break;
