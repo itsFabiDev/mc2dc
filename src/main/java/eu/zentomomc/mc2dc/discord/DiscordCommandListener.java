@@ -95,7 +95,7 @@ public class DiscordCommandListener extends ListenerAdapter {
                             event.reply("Your User ID is: " + event.getUser().getId().toString()).queue();
                             break;
                         case "features":
-                            TextChannel textChannel1 = event.getJDA().getTextChannelById(event.getChannel().getId());
+                            TextChannel textChannel1 = event.getChannel().asTextChannel();
                             EmbedBuilder embed1 = new EmbedBuilder();
                             embed1.setTitle("Developer Features");
                             embed1.setColor(Color.RED);
