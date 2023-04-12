@@ -72,19 +72,6 @@ public class DiscordCommandListener extends ListenerAdapter {
                 textChannel.sendMessageEmbeds(embed.build()).queue();
                 event.reply("The features are sent to the Discord Chat").queue();
                 break;
-            case "featurerequest":
-                String feature = event.getOption("feature").getAsString();
-                String message = "A new feature request was sent: " + feature + " by " + event.getMember().getNickname();
-                User user;
-                if(discordbot.getJda().getUserById("334794651041136641") != null) {
-                    user = discordbot.getJda().getUserById("334794651041136641");
-                    PrivateChannel channel = user.openPrivateChannel().complete();
-                    channel.sendMessage(message).queue();
-                    event.reply("Your feature request was sent!").queue();
-                } else {
-                    event.reply("Your feature request could not be sent!").queue();
-                }
-                break;
             case "developerfeatures":
                 String option = event.getOption("feature").getAsString();
                 if(discordbot.developerFeatures) {
