@@ -62,6 +62,7 @@ public class SittingData {
             horse.setPassenger(player);
             horse.setInvisible(true);
             horse.setPersistent(false);
+            player.sendTitle("§aDu sitzt nun", "§7Drücke §eShift §7um aufzustehen", 10, 70, 20);
 
             // Check if there is no block directly below the horse
             Location horseLocation = horse.getLocation();
