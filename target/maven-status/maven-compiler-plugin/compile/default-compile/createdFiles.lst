@@ -21,5 +21,6 @@ eu/zentomomc/mc2dc/commands/TPACommand.class
 eu/zentomomc/mc2dc/commands/TPACommand$1.class
 eu/zentomomc/mc2dc/discord/DiscordMcChat.class
 eu/zentomomc/mc2dc/commands/StopPluginCommand.class
+eu/zentomomc/mc2dc/Listeners/onPrepareAnvilListener.class
 eu/zentomomc/mc2dc/discord/DiscordStartUpListener.class
 eu/zentomomc/mc2dc/discord/Token.class

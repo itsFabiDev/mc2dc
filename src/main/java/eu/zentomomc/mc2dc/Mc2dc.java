@@ -44,6 +44,7 @@ public final class Mc2dc extends JavaPlugin {
         registerListener(new SittingListener());
         registerListener(new ServerRestartListener());
         registerListener(new onPlayerMove());
+        registerListener(new onPrepareAnvilListener());
         registerCommand(new TPACommand(), "tpa");
         registerCommand(new DiscordStopCommand(),"stopdc");
         registerCommand(new DiscordStartCommand(),"startdc");
